@@ -358,7 +358,7 @@ function jma_header_content_default()
 
             //end build class for nav
 
-            $widget_html = '<div class="jma-header-right">' . themeblvd_get_widgets($item['sidebar']['sidebar']) . '</div>';
+
             if (strpos($item['header_element'], 'content')) {
                 // CONTENT CODE CONTENT CODE
                 $jma_class .= ' header-content';
@@ -396,6 +396,7 @@ function jma_header_content_default()
                     do_action('themeblvd_header_logo');
                 }
                 if ($item['sidebar']['type']) {
+                    $widget_html = '<div class="jma-header-right">' . themeblvd_get_widgets($item['sidebar']['sidebar']) . '</div>';
                     echo $widget_html;
                 }
                 if (!strpos($item['header_element'], 'content')) {//cant have menu with sidebar
