@@ -200,6 +200,7 @@ $jma_spec_options = jma_get_theme_values();//echo '<pre>';print_r($jma_spec_opti
  */
 function jma_images_on($post_id = 0)
 {
+    $header_value = '';
     if (!$post_id) {
         global $post;
         $post_id = get_the_ID();
@@ -217,7 +218,11 @@ function jma_images_on($post_id = 0)
     if (get_post_meta($post_id, '_jma_header_data_key', true)) {
         $header_value =  get_post_meta($post_id, '_jma_header_data_key', true);
     }
-    $page_images = $header_value['change_header_default'] ;
+    if (is_array($header_value)) {
+        $page_images = $header_value['change_header_default'] ;
+    } else {
+        return false;
+    }
     $return = (($jma_spec_options[ $images_string ] && $page_images != 'off') || (!$jma_spec_options[ $images_string ] && $page_images == 'on'));
     return $return;
 }
