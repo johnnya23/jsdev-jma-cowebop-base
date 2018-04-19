@@ -39,7 +39,6 @@ jQuery(document).ready(function($) {
                     'height': $menu.find('ul.sf-menu').find('li.level-1').find('a').outerHeight() + 'px'
                 });
                 $widget_height = 0;
-                $menu_height = $menu.find('.sf-menu').outerHeight();
 
                 $menu.next().css('margin-top', menu_height + 'px');
                 if ($menu.hasClass('bottom')) {
@@ -54,7 +53,7 @@ jQuery(document).ready(function($) {
                 }
                 $logo_vert_padding = $logo_wrap.outerHeight() - $logo_wrap.height();
                 $logo_wrap.find('img').css({
-                    'height': ($widget_height + $menu_height - $logo_vert_padding) + 'px'
+                    'height': ($widget_height + menu_height - $logo_vert_padding) + 'px'
                 });
             } else {
                 $menu.removeClass('fix-menu');
