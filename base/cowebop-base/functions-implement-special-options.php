@@ -222,10 +222,13 @@ if (!function_exists('jma_add_title')) {
         global $jma_spec_options;
         $title_inner_element = $jma_spec_options['title_page_top'] == 2 && (is_page($post->ID) || is_single($post->ID))? 'h2': 'h1';
         $title_element = $jma_spec_options['title_page_top'] == 2 && (is_page($post->ID) || is_single($post->ID))? 'div': 'header';
+        $banner_value = $banner_text = '';
         if (get_post_meta(get_the_ID(), '_jma_banner_data_key', true)) {
             $banner_value =  get_post_meta(get_the_ID(), '_jma_banner_data_key', true);
         }
-        $banner_text = $banner_value['banner_text'];
+        if (is_array($banner_value)) {
+            $banner_text = $banner_value['banner_text'];
+        }
         $title = false;
         $opening = '<' . $title_element . ' id="full-page-title"><div id="full-page-title-inner" class="entry-header"><' . $title_inner_element . ' class="entry-title">';
         $closing = '</' . $title_inner_element . '></div></' . $title_element . '><!--full-page-title-->';
@@ -260,7 +263,7 @@ if (!function_exists('jma_add_title')) {
 
 
 /**
- * @function jma_copy_text filter to prepend copyright text with symbol and current year
+ * @function jma_copy_text insert theme options into footer
  *
  */
 
@@ -402,7 +405,9 @@ function jma_header_content_default()
                 if (!strpos($item['header_element'], 'content')) {//cant have menu with sidebar
                     $menu = $item['header_element'] == 'access'? 'primary': 'jma_secondary_menu';
                     wp_nav_menu(themeblvd_get_wp_nav_menu_args($menu));
-                    do_action('themeblvd_header_menu_addon');
+                    //use the parent theme addon hook for primary menu only
+                    $addon = $menu === 'primary'? 'themeblvd_header_menu_addon': 'jma_seconary_header_menu_addon';
+                    do_action($addon);
                 } ?>
 			</div></div></div><!-- .wrap (end) -->
 
