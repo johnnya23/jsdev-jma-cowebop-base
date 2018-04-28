@@ -9,7 +9,7 @@ if (!function_exists('jma_implement_special_options')) {
     function jma_implement_special_options()
     {
         global $post;
-        add_filter('themeblvd_toggle', 'jma_child_themeblvd_toggle');
+        add_filter('themeblvd_toggle_icons', 'jma_base_toggle_icons');
         add_filter('themeblvd_icon_shims', '__return_true');
         remove_action('themeblvd_header_content', 'themeblvd_header_content_default');//clear the header default content
         remove_action('themeblvd_header_menu', 'themeblvd_header_menu_default');
@@ -200,17 +200,24 @@ function jma_menu_filter($args)
 }
 
 /**
-     * function jma_child_themeblvd_toggle
-     * filter toggle ements to replace plus/minus with angle right and down
-     * @param $output vaulue from parent theme
-     * @return replaced classed (replace panel heading to "break" parent theme jQuery)
-     */
+ * function jma_base_toggle_icons
+ * filter toggle ements to replace plus/minus with angle right and down
+ * @param $output vaulue from parent theme
+ * @return replaced
+ */
 
-function jma_child_themeblvd_toggle($output)
-{
-    $output = str_replace(array( 'plus-circle', 'minus-circle'), array( 'angle-right', 'angle-down'), $output);
-    return $output;
-}
+ function jma_base_toggle_icons($icons)
+ {
+
+     // Icon for opening a closed toggle.
+     $icons['show'] = 'angle-right';
+
+     // Icon for closing an open toggle.
+     $icons['hide'] = 'angle-down';
+
+     return $icons;
+ }
+
 /**
  * @function jma_add_title add page title or banner content to the page
  *

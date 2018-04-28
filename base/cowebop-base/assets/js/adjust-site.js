@@ -1,23 +1,6 @@
 jQuery(document).ready(function($) {
     $window = $(window);
 
-    /* replace the parent theme toggle code with this containing angles instead of plus/minus*/
-    $('.collapse').on('show.bs.collapse', function() {
-
-        // Toggle is opening, add "active-trigger" class and
-        // change icon to a minus sign.
-        $(this).closest('.panel').find('.panel-heading a').addClass('active-trigger').find('.switch-me').removeClass('fa-angle-right').addClass('fa-angle-down');
-
-    });
-
-    $('.collapse').on('hide.bs.collapse', function() {
-
-        // Toggle is closing, remove "active-trigger" class and
-        // change icon to a plus sign.
-        $(this).closest('.panel').find('.panel-heading a').removeClass('active-trigger').find('.switch-me').removeClass('fa-angle-down').addClass('fa-angle-right');
-
-    });
-
     function fix_menu() {
         if ($(window).width() > 991) {
             var $menu = $('#branding').find('#access');
