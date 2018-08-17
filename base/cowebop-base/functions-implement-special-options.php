@@ -9,7 +9,7 @@ if (!function_exists('jma_implement_special_options')) {
     function jma_implement_special_options()
     {
         global $post;
-        add_filter('themeblvd_toggle', 'jma_child_themeblvd_toggle');
+        add_filter('themeblvd_toggle_icons', 'jma_base_toggle_icons');
         add_filter('themeblvd_icon_shims', '__return_true');
         remove_action('themeblvd_header_content', 'themeblvd_header_content_default');//clear the header default content
         remove_action('themeblvd_header_menu', 'themeblvd_header_menu_default');
@@ -200,17 +200,24 @@ function jma_menu_filter($args)
 }
 
 /**
-     * function jma_child_themeblvd_toggle
-     * filter toggle ements to replace plus/minus with angle right and down
-     * @param $output vaulue from parent theme
-     * @return replaced classed (replace panel heading to "break" parent theme jQuery)
-     */
+ * function jma_base_toggle_icons
+ * filter toggle ements to replace plus/minus with angle right and down
+ * @param $output vaulue from parent theme
+ * @return replaced
+ */
 
-function jma_child_themeblvd_toggle($output)
-{
-    $output = str_replace(array( 'plus-circle', 'minus-circle'), array( 'angle-right', 'angle-down'), $output);
-    return $output;
-}
+ function jma_base_toggle_icons($icons)
+ {
+
+     // Icon for opening a closed toggle.
+     $icons['show'] = 'angle-right';
+
+     // Icon for closing an open toggle.
+     $icons['hide'] = 'angle-down';
+
+     return $icons;
+ }
+
 /**
  * @function jma_add_title add page title or banner content to the page
  *
@@ -222,10 +229,13 @@ if (!function_exists('jma_add_title')) {
         global $jma_spec_options;
         $title_inner_element = $jma_spec_options['title_page_top'] == 2 && (is_page($post->ID) || is_single($post->ID))? 'h2': 'h1';
         $title_element = $jma_spec_options['title_page_top'] == 2 && (is_page($post->ID) || is_single($post->ID))? 'div': 'header';
+        $banner_value = $banner_text = '';
         if (get_post_meta(get_the_ID(), '_jma_banner_data_key', true)) {
             $banner_value =  get_post_meta(get_the_ID(), '_jma_banner_data_key', true);
         }
-        $banner_text = $banner_value['banner_text'];
+        if (is_array($banner_value)) {
+            $banner_text = $banner_value['banner_text'];
+        }
         $title = false;
         $opening = '<' . $title_element . ' id="full-page-title"><div id="full-page-title-inner" class="entry-header"><' . $title_inner_element . ' class="entry-title">';
         $closing = '</' . $title_inner_element . '></div></' . $title_element . '><!--full-page-title-->';
@@ -260,7 +270,7 @@ if (!function_exists('jma_add_title')) {
 
 
 /**
- * @function jma_copy_text filter to prepend copyright text with symbol and current year
+ * @function jma_copy_text insert theme options into footer
  *
  */
 
@@ -402,7 +412,9 @@ function jma_header_content_default()
                 if (!strpos($item['header_element'], 'content')) {//cant have menu with sidebar
                     $menu = $item['header_element'] == 'access'? 'primary': 'jma_secondary_menu';
                     wp_nav_menu(themeblvd_get_wp_nav_menu_args($menu));
-                    do_action('themeblvd_header_menu_addon');
+                    //use the parent theme addon hook for primary menu only
+                    $addon = $menu === 'primary'? 'themeblvd_header_menu_addon': 'jma_seconary_header_menu_addon';
+                    do_action($addon);
                 } ?>
 			</div></div></div><!-- .wrap (end) -->
 
