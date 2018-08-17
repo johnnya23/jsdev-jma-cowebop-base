@@ -1,23 +1,6 @@
 jQuery(document).ready(function($) {
     $window = $(window);
 
-    /* replace the parent theme toggle code with this containing angles instead of plus/minus*/
-    $('.collapse').on('show.bs.collapse', function() {
-
-        // Toggle is opening, add "active-trigger" class and
-        // change icon to a minus sign.
-        $(this).closest('.panel').find('.panel-heading a').addClass('active-trigger').find('.switch-me').removeClass('fa-angle-right').addClass('fa-angle-down');
-
-    });
-
-    $('.collapse').on('hide.bs.collapse', function() {
-
-        // Toggle is closing, remove "active-trigger" class and
-        // change icon to a plus sign.
-        $(this).closest('.panel').find('.panel-heading a').removeClass('active-trigger').find('.switch-me').removeClass('fa-angle-down').addClass('fa-angle-right');
-
-    });
-
     function fix_menu() {
         if ($(window).width() > 991) {
             var $menu = $('#branding').find('#access');
@@ -29,10 +12,9 @@ jQuery(document).ready(function($) {
             });
             var $admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() : 0;
             var $offset = $window.scrollTop();
-            var menu_height = $menu.height();
 
             if ($offset > $menu_top_pos &&
-                (($(window).height() + menu_height + $menu_top_pos + 25) < $('body').height())) {
+                (($(window).height() + $menu.height() + $menu_top_pos + 25) < $('body').height())) {
                 $menu.addClass('fix-menu');
                 $menu.css({
                     'top': $admin_bar_height + 'px',
@@ -40,7 +22,7 @@ jQuery(document).ready(function($) {
                 });
                 $widget_height = 0;
 
-                $menu.next().css('margin-top', menu_height + 'px');
+                $menu.next().css('margin-top', $menu.height() + 'px');
                 if ($menu.hasClass('bottom')) {
                     if ($menu.find('.jma-header-right').length) {
                         $widget_height = $menu.find('.jma-header-right').outerHeight(true) + parseInt($menu.find('.jma-header-right').css('top'), 10);
@@ -53,7 +35,7 @@ jQuery(document).ready(function($) {
                 }
                 $logo_vert_padding = $logo_wrap.outerHeight() - $logo_wrap.height();
                 $logo_wrap.find('img').css({
-                    'height': ($widget_height + menu_height - $logo_vert_padding) + 'px'
+                    'height': ($widget_height + $menu.find('.sf-menu').outerHeight() - $logo_vert_padding) + 'px'
                 });
             } else {
                 $menu.removeClass('fix-menu');
@@ -68,7 +50,7 @@ jQuery(document).ready(function($) {
                 });
             }
         }
-    }
+    };
 
     function header_adjust() {
         var $menu = $('.header-nav');
