@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
                 });
             }
         }
-    };
+    }
 
     function header_adjust() {
         var $menu = $('.header-nav');
