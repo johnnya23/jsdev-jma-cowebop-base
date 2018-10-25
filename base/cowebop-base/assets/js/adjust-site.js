@@ -12,9 +12,10 @@ jQuery(document).ready(function($) {
             });
             var $admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() : 0;
             var $offset = $window.scrollTop();
+            var menu_height = $menu.height();
 
             if ($offset > $menu_top_pos &&
-                (($(window).height() + $menu.height() + $menu_top_pos + 25) < $('body').height())) {
+                (($(window).height() + menu_height + $menu_top_pos + 25) < $('body').height())) {
                 $menu.addClass('fix-menu');
                 $menu.css({
                     'top': $admin_bar_height + 'px',
@@ -22,7 +23,7 @@ jQuery(document).ready(function($) {
                 });
                 $widget_height = 0;
 
-                $menu.next().css('margin-top', $menu.height() + 'px');
+                $menu.next().css('margin-top', menu_height + 'px');
                 if ($menu.hasClass('bottom')) {
                     if ($menu.find('.jma-header-right').length) {
                         $widget_height = $menu.find('.jma-header-right').outerHeight(true) + parseInt($menu.find('.jma-header-right').css('top'), 10);
