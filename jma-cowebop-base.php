@@ -7,7 +7,19 @@ Author: John Antonacci
 Author URI: http://cleansupersites.com
 License: GPL2
 */
+/**
+ * Absolute file path to bases directory.
+ *
+ * @since Theme_Blvd 2.0.0
+ */
+define('JMA_BASES_DIRECTORY', plugin_dir_path(__FILE__));
 
+/**
+ * URI to bases directory.
+ *
+ * @since Theme_Blvd 2.0.0
+ */
+define('JMA_BASES_URI', plugin_dir_url(__FILE__));
 /**
  * Filter in the paths to your bases.
  */

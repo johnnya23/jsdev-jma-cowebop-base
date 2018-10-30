@@ -2,6 +2,27 @@
 
 add_filter('widget_text', 'do_shortcode');//FOR WIDGET SHORTCODE
 
+
+/**
+ * Absolute file path to cowebop base directory.
+ *
+ * @since Theme_Blvd 2.0.0
+ */
+define('JMA_COWEBOP_BASE_DIRECTORY', plugin_dir_path(__FILE__));
+
+/**
+ * URI to cowebop base directory.
+ *
+ * @since Theme_Blvd 2.0.0
+ */
+define('JMA_COWEBOP_BASE_URI', plugin_dir_url(__FILE__));
+
+function jma_cowebop_base_icon_js_file_url()
+{
+    return JMA_COWEBOP_BASE_URI . 'assets/js/fontawesome.min.js';//5.4.1
+}
+add_filter('themeblvd_icon_js_file_url', 'jma_cowebop_base_icon_js_file_url');
+
 if (!function_exists('jmaStartsWith')) {
     function jmaStartsWith($haystack, $needle)
     {
@@ -113,16 +134,7 @@ add_filter('the_content', 'shortcode_empty_paragraph_fix');
 /*********************************************************************
  * ADD SOME EXTRA HOOKS
  ********************************************************************/
-//add hooks to the top and bottom of .entry-content div (also required content-page.php modifications)
-//immediately inside <article>
-function jma_content_top()
-{
-    do_action('jma_content_top');
-}
-function jma_content_bottom()
-{
-    do_action('jma_content_bottom');
-}
+
 //add hooks to the outside sidebar
 function jma_sidebar_top()
 {
