@@ -202,17 +202,17 @@ foreach ($font_selectors as $key => $font) {
     );
 }
 
-$dynamic_styles[1000] = array('.btn, .btn-primary, body .theme-default .nivo-caption a.btn, body .search, .tb-button, .comment-reply-link, #comments .comment-body .reply a, .btn:focus, .tb-button:focus, .comment-reply-link:focus, #comments .comment-body .reply a:focus, input[type="submit"], button[type="submit"]',
+$dynamic_styles[1000] = array('.btn, .btn-primary, body .metaslider .theme-default .nivo-caption a.btn, body .search, .tb-button, .comment-reply-link, #comments .comment-body .reply a, .btn:focus, .tb-button:focus, .comment-reply-link:focus, #comments .comment-body .reply a:focus, input[type="submit"], button[type="submit"]',
     array('color', $jma_spec_options['button_font']),
     array('background-color',  $jma_spec_options['button_back']),
     array('border-color', $jma_spec_options['button_font']),
     array('border','solid!important'),
 );
-$border_array = get_tint($jma_spec_options['typography_body_color']);
+$border_array = get_tint($jma_spec_options['footer_background_color']);
 $dynamic_styles[1010] = array('textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select',
     array('border-color', $border_array['light_hex'])
 );
-$dynamic_styles[1020] = array('.btn:hover, body .theme-default .nivo-caption a.btn:hover, .btn:focus, .btn:active, .btn.active, .btn-primary:hover, .tb-button:hover, .comment-reply-link:hover, #comments .comment-body .reply a:hover, input[type="submit"]:hover',
+$dynamic_styles[1020] = array('.btn:hover, body .metaslider .theme-default .nivo-caption a.btn:hover, .btn:focus, .btn:active, .btn.active, .btn-primary:hover, .tb-button:hover, .comment-reply-link:hover, #comments .comment-body .reply a:hover, input[type="submit"]:hover',
     array('color', $jma_spec_options['button_font_hover']),
     array('background-color',  $jma_spec_options['button_back_hover']),
     array('border-color', $jma_spec_options['button_font_hover']),
@@ -512,7 +512,8 @@ if ($body_shape != 'dark_modular') {
         array('margin', '20px auto')
     );
     $dynamic_styles[6010] = array('#custom-main .element-section',
-        array('padding', '20px')
+        array('padding-left', '20px'),
+        array('padding-right', '20px')
     );
     $dynamic_styles[6020] = array('.outside-sidebar-inner',
         array('padding-top', '0 '),
@@ -644,7 +645,7 @@ $dynamic_styles[9050] = array('.site-footer a,.header-top a, .header-top .tb-soc
 $dynamic_styles[9060] = array('.tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active,  .tb-nav-trigger:hover, .mobile-nav>li>a, .tb-team-member .member-image::before ',
     array('background-color', $jma_spec_options['footer_background_color']),
 );
-$dynamic_styles[9070] = array('.tb-thumb-link .thumb-link-icon, body .theme-default .nivo-directionNav a',
+$dynamic_styles[9070] = array('.tb-thumb-link .thumb-link-icon, body .metaslider .theme-default .nivo-directionNav a',
     array('background-color', get_trans($jma_spec_options['footer_background_color'], 0.6)),
 );
 
