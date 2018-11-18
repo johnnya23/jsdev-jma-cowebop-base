@@ -34,8 +34,8 @@ if (!function_exists('jma_implement_special_options')) {
 
         if (is_page_template('template_builder.php') && $jma_body_style == 'stretch_bordered') {
             //wrap the custom template with div .jma-custom-wrap
-            add_action('themeblvd_content_top', 'jma_custom_border_top', 1);
-            add_action('themeblvd_content_bottom', 'jma_custom_border_bottom', 9999);
+            add_action('themeblvd_header_after', 'jma_custom_border_top', 9999);
+            add_action('themeblvd_footer_before', 'jma_custom_border_bottom', 1);
         }
         if ($jma_body_style == 'dark_modular') {//remove ad_above_content and breadcrumbs from before content-sidebar-wrap
             remove_action('themeblvd_before_layout', 'themeblvd_breadcrumbs_default');

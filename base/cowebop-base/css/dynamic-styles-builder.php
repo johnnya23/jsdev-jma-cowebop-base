@@ -226,7 +226,7 @@ if ($body_shape == 'dark_modular') {
 } elseif ($body_shape == 'boxed') {
     $page_selectors ='#main> .wrap, #custom-main';
 } elseif ($body_shape == 'stretch_bordered') {
-    $page_selectors ='#main> .wrap, .jma-custom-wrap';
+    $page_selectors ='#main> .wrap, .site-main .wrap';
 } else {//stretch
     $page_selectors ='body #wrapper';
 }
@@ -251,7 +251,7 @@ if ($body_shape == 'boxed') {
     $border_selector = '#container';
 }
 if ($body_shape == 'stretch_bordered') {
-    $border_selector = '#main > .wrap, .sidebar-layout-full_width .jma-custom-wrap';
+    $border_selector = '#main > .wrap, .sidebar-layout-full_width .site-main';
 }
 if ($body_shape == 'dark_modular') {
     $border_selector = '#top #branding, .site-footer, #content > .inner, .sidebar-layout-full_width #custom-main, .fixed-sidebar .fixed-sidebar-inner, .outside-sidebar-widget-wrap';
@@ -295,7 +295,7 @@ if ($body_shape == 'stretch_bordered') {
     );
 }
 if ($body_shape == 'dark_modular') {
-    $dynamic_styles[3070] = array('#top,  #custom-main, #main , #bottom',
+    $dynamic_styles[3070] = array('#top,  .site-main , #bottom',
         array('max-width', $jma_spec_options['site_width'].'px'),
         array('margin-left', 'auto'),
         array('margin-right', 'auto'),
@@ -313,7 +313,7 @@ if (($body_shape == 'stretch' || $body_shape == 'stretch_bordered') && $jma_spec
     $dynamic_styles[3090] = array('#wrapper',
         array('padding', '0 ')/* Lose gutters on sides as window shrinks */
     );
-    $builder_sel = $body_shape == 'stretch'? '.element-section > .element, ': '#custom-main, ';
+    $builder_sel = $body_shape == 'stretch'? '.element-section > .element, ': '.jma-custom-wrap, ';
 
     $dynamic_styles[3110] = array($builder_sel .'.widgets-above-header>.wrap, #access > div, #access2 > div, .tb-sticky-menu > .wrap, .header-top > .wrap, .header-above > .wrap, .header-content,.header-content.image .wrap>div>div, #main, .site-footer > .wrap > div > .wrap, .widgets-below-footer>.wrap',
         array('margin-left', 'auto'),
@@ -508,7 +508,7 @@ if ($body_shape != 'dark_modular') {
         array('padding-left', '20px')
     );// end creases for non-dark modular
 } else {// dark modular specific styles
-    $dynamic_styles[6000] = array('#custom-main, #main ',
+    $dynamic_styles[6000] = array('.site-main ',
         array('margin', '20px auto')
     );
     $dynamic_styles[6010] = array('#custom-main .element-section',
