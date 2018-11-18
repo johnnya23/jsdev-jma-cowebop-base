@@ -2,7 +2,8 @@ jQuery(document).ready(function($) {
     $window = $(window);
 
     function fix_menu() {
-        if ($(window).width() > 991) {
+        //reads @media query in base.css to trigger window size change
+        if (($('.tb-floating-search').css('z-index') == '1000')) {
             var $menu = $('#branding').find('#access');
             var $menu_top_pos = parseInt($('#wrapper').css("padding-top"));
             $logo_wrap = $menu.find('.site-logo');

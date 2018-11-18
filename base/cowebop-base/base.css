@@ -1,3 +1,26 @@
+.mobile-menu-right-off.mobile-header-on #wrapper {
+    -webkit-transform: none;
+    transform: none;
+}
+
+/* this is used by jquery to trigger small device code */
+
+body .tb-floating-search {
+    z-index: 1000;
+}
+
+@media(max-width:991px) {
+    body .tb-floating-search {
+        z-index: 1001;
+    }
+}
+
+@media(max-width:767px) {
+    body .tb-floating-search {
+        z-index: 1002;
+    }
+}
+
 .sf-menu-with-fontawesome .sf-sub-indicator {
     width: .625em;
 }
