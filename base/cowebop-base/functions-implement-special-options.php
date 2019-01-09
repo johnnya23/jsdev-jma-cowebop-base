@@ -278,9 +278,10 @@ function jma_copy_text($current)
 {
     global $jma_spec_options;
     $current = ($jma_spec_options['footer_copyright'])? $current: '';
-    $return = '<div class="clearfix"><div class="float-at-768 col-sm-12">' . $current;
+    $footer_align = $jma_spec_options['schema_footerextra']? ' has-extra': '';
+    $return = '<div style="display:block" class="row clearfix"><div class="float-at-768 col-sm-12">' . $current;
     if ($jma_spec_options['schema_company']) {
-        $return .= '<div id="schema_block" class="schema_organization clearfix" itemscope itemtype="http://schema.org/Organization">
+        $return .= '<div id="schema_block" class="schema_organization' . $footer_align . ' clearfix" itemscope itemtype="http://schema.org/Organization">
 			<span class="date">&copy; '. date('Y'). '&nbsp; </span><a class="schema_url" target="_blank" itemprop="url" href="' . $jma_spec_options['schema_url'] . '">
 			<span class="schema_name" itemprop="name">' . $jma_spec_options['schema_company'] . '</span>
 			</a>';
@@ -307,6 +308,10 @@ function jma_copy_text($current)
             $return .= ' <div class="phone divide-left">Phone:&nbsp;<span class="nowrap" itemprop="telephone">' . $jma_spec_options['schema_phone'] . '</span></div>';
         }
         $return .= '</div>';
+
+        if ($jma_spec_options['schema_footerextra']) {
+            $return .= ' <div class="footer-extra">' . $jma_spec_options['schema_footerextra'] . '</div>';
+        }
         $return .= '</div>';
         $return .= '</div>';
     }

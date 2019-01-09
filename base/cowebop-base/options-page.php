@@ -359,7 +359,8 @@ $schema_options = array(
     'schema_Zip' => '80023',
     'schema_Country' => 'US',
     'schema_Email' => 'tracy@cowebop.com',
-    'schema_Phone' => '303.459.2686'
+    'schema_Phone' => '303.459.2686',
+    'schema_FooterExtra' => 'optional rightside content (not part of schema)'
 );
 foreach ($schema_options as $schema_option => $default) {
     $pobox_desc = $schema_option === 'schema_StreetOrPOBox'? ' start with exactly "P.O. Box" (no quotes) if this is a P.O. Box.': '';

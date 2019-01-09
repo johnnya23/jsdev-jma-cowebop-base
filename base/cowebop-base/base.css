@@ -21,6 +21,23 @@ body .tb-floating-search {
     }
 }
 
+.header-top>.wrap {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.header-top>.wrap>* {
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+.header-top>.wrap>.header-top-nav>li.top-widget a {
+    padding: 12px;
+    margin-top: -11px;
+    display: inline-block;
+    text-decoration: none;
+}
+
 .sf-menu-with-fontawesome .sf-sub-indicator {
     width: .625em;
 }
@@ -615,6 +632,14 @@ img.avatar {
 }
 
 @media (min-width: 768px) {
+    #bottom .has-extra {
+        display: block;
+        float: left;
+    }
+    .footer-extra {
+        display: block;
+        float: right;
+    }
     .copyright .schema_organization div.divide-left {
         border-left: solid 1px #ffffff;
         margin-left: 10px;
