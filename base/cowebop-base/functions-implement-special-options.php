@@ -10,7 +10,6 @@ if (!function_exists('jma_implement_special_options')) {
     {
         global $post;
         add_filter('themeblvd_toggle_icons', 'jma_base_toggle_icons');
-        add_filter('themeblvd_icon_shims', '__return_true');
         remove_action('themeblvd_header_content', 'themeblvd_header_content_default');//clear the header default content
         remove_action('themeblvd_header_menu', 'themeblvd_header_menu_default');
         add_action('themeblvd_header_content', 'jma_header_content_default');//add our loop for sortable header

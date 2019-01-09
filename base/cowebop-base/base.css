@@ -5,18 +5,18 @@
 
 /* this is used by jquery to trigger small device code */
 
-body .tb-floating-search {
+body .copyright {
     z-index: 1000;
 }
 
 @media(max-width:991px) {
-    body .tb-floating-search {
+    body .copyright {
         z-index: 1001;
     }
 }
 
 @media(max-width:767px) {
-    body .tb-floating-search {
+    body .copyright {
         z-index: 1002;
     }
 }
