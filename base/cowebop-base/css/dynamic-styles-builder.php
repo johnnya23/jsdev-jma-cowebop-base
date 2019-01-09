@@ -52,11 +52,9 @@ $dynamic_styles[40] =  array($main_bg ,
 $dynamic_styles[50] =  array('#access.fix-menu' ,// add child sticky-menu
     array('background-color', get_trans($jma_spec_options['menu_background_color'], 0.9))
 );
-if ($root_off) {
-    $dynamic_styles[60] =  array('#access.fix-menu' ,// add child sticky-menu when menu root bg off selected
+    $dynamic_styles[60] =  array('#access.fix-menu.remove_root_bg' ,// add child sticky-menu when menu root bg off selected
         array('background-color', get_trans($jma_spec_options['header_background_color'], 0.9) . '!important')
     );
-}
 if ($jma_spec_options[ 'body_shape' ] == 'boxed' || $jma_spec_options[ 'body_shape' ] == 'dark_modular') {
     $dynamic_styles[70] =  array('min-' . ($jma_spec_options['site_width']+55) . '@#access.fix-menu' ,
         array('width', ($jma_spec_options['site_width']) . 'px')

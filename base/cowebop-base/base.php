@@ -349,7 +349,7 @@ require_once 'functions-css-builder-helpers.php';
 
 /**
  * @function generate_style_css generate dynamic-styles.css from dynamic-styles-builder.php
- * and supply values for $jma_spec_options, $logo_in_menu, $root_off
+ * and supply values for $jma_spec_options, $logo_in_menu
  *
  */
 function generate_style_css()
@@ -357,15 +357,11 @@ function generate_style_css()
     $jma_spec_options = jma_get_theme_values();//make $jma_spec_options available to dynamic-styles-builder.php
 
     $logo_in_menu = false;
-    $root_off = false;
     $sortable_items = $jma_spec_options['header_content'];
     if (is_array($sortable_items)) {
         foreach ($sortable_items as $sortable_item) {
             if ($sortable_item['logo']==1 && $sortable_item['header_element'] == 'access') {
                 $logo_in_menu = true;
-            }
-            if ($sortable_item['remove_root_bg']==1 && $sortable_item['header_element'] == 'access') {
-                $root_off = true;
             }
         }
     }

@@ -5,19 +5,19 @@
 
 /* this is used by jquery to trigger small device code */
 
-body .copyright {
-    z-index: 1000;
+body .site-copyright .copyright {
+    margin-bottom: 5px;
 }
 
 @media(max-width:991px) {
-    body .copyright {
-        z-index: 1001;
+    body .site-copyright .copyright {
+        margin-bottom: 6px;
     }
 }
 
 @media(max-width:767px) {
-    body .copyright {
-        z-index: 1002;
+    body .site-copyright .copyright {
+        margin-bottom: 7px;
     }
 }
 

@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 
     function fix_menu() {
         //reads @media query in base.css to trigger window size change
-        if (($('.copyright').css('z-index') == '1000')) {
+        if (($('.copyright').css('margin-bottom') == '5px')) {
             var $menu = $('#branding').find('#access');
             var $menu_top_pos = parseInt($('#wrapper').css("padding-top"));
             $logo_wrap = $menu.find('.site-logo');
