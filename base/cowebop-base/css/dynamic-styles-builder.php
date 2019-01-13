@@ -636,11 +636,11 @@ $dynamic_styles[9040] = array('.site-footer,  .header-top, .mobile-nav, .tb-mobi
     array('color', $jma_spec_options['footer_font_color']),
 );
 
-$dynamic_styles[9050] = array('.site-footer a,.header-top a, .header-top .tb-social-icons>li>a, .header-top-nav .tb-search-trigger, .header-top-nav .tb-cart-trigger , .tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active, .tb-nav-trigger:hover .hamburger span,.tb-mobile-panel .header-text, .tb-social-icons.light>li>a ',
+$dynamic_styles[9050] = array('.site-footer a,.header-top a, .header-top .tb-social-icons>li>a, .header-top-nav .tb-search-trigger, .header-top-nav .tb-cart-trigger , .tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active, .tb-nav-trigger:hover .hamburger span,.tb-mobile-panel .header-text, .tb-social-icons.light>li>a,',
     array('color', $jma_spec_options['footer_font_color']),
 );
 
-$dynamic_styles[9060] = array('.tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active,  .tb-nav-trigger:hover, .mobile-nav>li>a, .tb-team-member .member-image::before ',
+$dynamic_styles[9060] = array('.tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active,  .tb-nav-trigger:hover, .mobile-nav>li>a, .tb-team-member .member-image::before, .btn-share:hover, .btn-share:focus, .tb-tags a:hover, .tb-tags a:focus, .tb-lang-popup a:hover, .tb-lang-popup a:focus, .post_showcase .showcase-item.has-title .featured-item.showcase .tb-thumb-link:after, .post_showcase .showcase-item.has-title .featured-item.showcase.tb-thumb-link:after',
     array('background-color', $jma_spec_options['footer_background_color']),
 );
 $dynamic_styles[9070] = array('.tb-thumb-link .thumb-link-icon, body .metaslider .theme-default .nivo-directionNav a',
@@ -651,23 +651,36 @@ $dynamic_styles[9080] = array('.tb-nav-trigger:hover .hamburger span, .tb-nav-tr
     array('background-color', get_trans($jma_spec_options['footer_font_color']), 0.9),
 );
 
-$dynamic_styles[9090] = array('html',
+$dynamic_styles[9090] = array('.btn-share',
+    array('color', get_trans($jma_spec_options['footer_font_color']), 0.7),
+);
+
+$dynamic_styles[9100] = array('html',
     array('background-color', $jma_spec_options['site_background_color'])
 );
 if ($body_shape == 'stretch_bordered' || $body_shape == 'stretch') {
-    $dynamic_styles[9100] = array('#wrapper',
+    $dynamic_styles[9110] = array('#wrapper',
         array('background-color', $jma_spec_options['site_background_color'])
     );
-    $dynamic_styles[9110] = array('html',
+    $dynamic_styles[9120] = array('html',
         array('background-color', $jma_spec_options['footer_background_color'])
     );
 }
-$dynamic_styles[9120] = array('.element-section',
+$dynamic_styles[9130] = array('.element-section',
     array('padding-bottom', $jma_spec_options['builder_section_vert'] . 'px'),
     array('padding-top', $jma_spec_options['builder_section_vert'] . 'px')
 );
-$dynamic_styles[9130] = array('.element-section>.element, .element-columns .element',
+$dynamic_styles[9140] = array('.element-section>.element, .element-columns .element',
     array('margin-bottom', $jma_spec_options['builder_element_vert'] . 'px')
+);
+$dynamic_styles[9150] = array('.tooltip.top .tooltip-arrow, .tb-contact-popover.bottom',
+    array('border-top-color', $jma_spec_options['footer_background_color'])
+);
+$dynamic_styles[9160] = array('.tooltip.bottom .tooltip-arrow, .tb-contact-popover.bottom > .arrow:after',
+    array('border-bottom-color', $jma_spec_options['footer_background_color'])
+);
+$dynamic_styles[9170] = array('.tooltip-inner',
+    array('border-color', $jma_spec_options['footer_background_color'])
 );
 
 $dynamic_styles = apply_filters('dynamic_styles_filter', $dynamic_styles);
