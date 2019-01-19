@@ -368,12 +368,13 @@ body #top #branding>.wrap .right ul.sf-menu {
 body #top #branding>.wrap .center div>ul.sf-menu {
     float: none;
     text-align: center;
+    font-size: 0;
+    /* correct spacing between inline-block items */
 }
 
 body #top #branding>.wrap .center ul.sf-menu>li {
     display: inline-block;
     float: none;
-    margin-left: -4px;
     text-align: left;
 }
 
