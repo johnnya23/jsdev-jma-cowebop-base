@@ -76,6 +76,26 @@ body.search {
     }
 }
 
+.jma-header-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.jma-header-overlay>div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
 .tb-mobile-header {
     display: none;
 }
@@ -316,6 +336,12 @@ body #branding>div ul.sf-menu .sf-mega ul {
     }
     .stretched #access.fix-menu {
         width: 100%;
+    }
+    #access.fix-menu .image-logo {
+        position: absolute;
+    }
+    #access.slide-menu .image-logo {
+        position: relative;
     }
     .header-nav .site-logo img {
         transition: height 0.15s;

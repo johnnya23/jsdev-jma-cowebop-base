@@ -46,8 +46,6 @@ if (!function_exists('jma_implement_special_options')) {
 
             add_action('themeblvd_content_top', 'themeblvd_widgets_above_content', 2);//add ad_above_content & br. cr. to top of content
             add_action('themeblvd_content_top', 'themeblvd_breadcrumbs_default', 3);//add ad_above_content & br. cr. to top of content
-            remove_action('themeblvd_main_bottom', 'themeblvd_main_bottom_default');
-            add_action('themeblvd_content_bottom', 'themeblvd_main_bottom_default');
         }
         if ($jma_high_sidebar == 'left' || $jma_high_sidebar == 'right') {
             add_action('themeblvd_header_after', 'jma_add_outside_col_top');// same html markup weather 'right' or 'left'
@@ -68,10 +66,26 @@ if (!function_exists('jma_implement_special_options')) {
         }
 
         //function in header-images.php displays header images (hooked in loop below)
-        add_action('jma_header_image', 'jma_header_image_html');
+        if (jma_images_on()) {
+            add_action('jma_header_image', 'jma_header_image_html');
+            add_action('jma_header_image_after', 'jma_header_widget');
+        }
     }
 }
 add_action('template_redirect', 'jma_implement_special_options');
+
+function jma_header_widget()
+{
+    global $post;
+    $widget_html = '';
+    if (get_post_meta($post->ID, '_jma_header_data_key', true)) {
+        $header_values = get_post_meta($post->ID, '_jma_header_data_key', true);
+    }
+    if ($header_values['widget_area']) {
+        $widget_html = '<div class="jma-header-overlay post-id-' . $post->ID . '"><div>' . $header_values['widget_area'] . '</div></div>';
+    }
+    echo $widget_html;
+}
 
 /**
  * @function alt_sticky_logo allows a custom logo if paret theme sticky menu is in use
@@ -425,7 +439,7 @@ function jma_header_content_default()
 			<?php
             }// end this will either build simple header content then underlay image or add menu (with logo if called for)
             //adds all the image code here (image is considered a content item)
-            if ($item['header_element'] == 'image jma-header-content' && jma_images_on()) {
+            if ($item['header_element'] == 'image jma-header-content') {
                 do_action('jma_header_image');
             }
 
