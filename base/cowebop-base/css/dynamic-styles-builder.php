@@ -636,7 +636,7 @@ $dynamic_styles[9040] = array('.site-footer,  .header-top, .mobile-nav, .tb-mobi
     array('color', $jma_spec_options['footer_font_color']),
 );
 
-$dynamic_styles[9050] = array('.site-footer a,.header-top a, .header-top .tb-social-icons>li>a, .header-top-nav .tb-search-trigger, .header-top-nav .tb-cart-trigger , .tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active, .tb-nav-trigger:hover .hamburger span,.tb-mobile-panel .header-text',
+$dynamic_styles[9050] = array('.site-footer a,.header-top a, .header-top .tb-social-icons>li>a, .header-top-nav .tb-search-trigger, .header-top-nav .tb-cart-trigger , .tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel li li a, body .tb-social-icons.panel-item>li>a, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active, .tb-nav-trigger:hover .hamburger span,.tb-mobile-panel .header-text',
     array('color', $jma_spec_options['footer_font_color']),
 );
 

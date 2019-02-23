@@ -88,7 +88,7 @@ if (!function_exists('jma_header_input_box')) {
         echo '<label for="widget_area">';
         _e('Add page by page content to display over the featured image (or slider)', 'jma_textdomain');
         echo '</label><br/><br/> ';
-        
+
         $content = !isset($header_values['widget_area'])? '': $header_values['widget_area'];
         wp_editor(htmlspecialchars_decode($content), '_jma_widget_area', array(
             "media_buttons" => true
@@ -145,9 +145,9 @@ if (!function_exists('jma_save_header_postdata')) {
 
         // Sanitize user input.  htmlspecialchars($_POST['_right_sb_wysiwyg']);
         $values = $_POST;
-        $values['widget_area'] = htmlspecialchars($_POST[ '_jma_widget_area']);
+        $values['widget_area'] = $_POST[ '_jma_widget_area'];
         foreach ($values as $i => $value) {
-            $clean_data[$i] = sanitize_text_field($value);
+            $clean_data[$i] = wp_kses_post($value);
         }
 
         // Update the meta field in the database.

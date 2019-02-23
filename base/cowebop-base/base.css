@@ -54,26 +54,33 @@ body.search {
     display: none
 }
 
-@media(max-width: 767px) {
-    .jma-header-item, .jma-header-right {
-        clear: both;
-    }
-    .header-nav ul, .header-top {
-        display: none
-    }
-    .header-nav {
-        background: none !important;
-        border-top: none !important;
-        border-bottom: none !important;
-    }
-    .mobile-nav {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: black;
-        z-index: 3;
-        display: block;
-    }
+.mobile-header-on .jma-header-item, .mobile-header-on .jma-header-right {
+    clear: both;
+}
+
+/*.header-nav ul,*/
+
+.mobile-header-on .header-top {
+    display: none
+}
+
+.mobile-header-on .header-nav {
+    background: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.mobile-header-on .mobile-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: black;
+    z-index: 3;
+    display: block;
+}
+
+.mobile-nav>li {
+    margin-right: 0;
 }
 
 .jma-header-overlay {
@@ -311,10 +318,8 @@ body #branding>div ul.sf-menu .sf-mega ul {
     padding: 0;
 }
 
-@media(max-width:767px) {
-    .tb-mobile-menu-wrapper #menu-search-popup {
-        display: none;
-    }
+.mobile-header-on .tb-mobile-menu-wrapper #menu-search-popup {
+    display: none;
 }
 
 @media (max-width: 600px) {
@@ -418,13 +423,15 @@ body #top #branding>.wrap .center ul.sf-menu>li>ul {
 
 /* adjjust images on and over lapping header */
 
+.mobile-header-on .header-content>.wrap {
+    height: auto;
+}
+
+.mobile-header-on .logo.access ul {
+    display: none !important
+}
+
 @media (max-width: 767px) {
-    .header-content>.wrap {
-        height: auto;
-    }
-    .logo.access ul {
-        display: none !important
-    }
     .lg_device {
         display: none;
         height: 0;
@@ -439,23 +446,26 @@ body #top #branding>.wrap .center ul.sf-menu>li>ul {
     }
 }
 
+.mobile-header-off .header-nav {
+    display: inherit;
+}
+
+.mobile-header-off.images-on .jma-header-content.image .wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+}
+
 @media (min-width: 768px) {
-    .header-nav {
-        display: inherit;
-    }
-    .images-on .jma-header-content.image .wrap {
-        position: absolute;
-        top: 0;
-        left: -50%;
-        width: 100%;
-        max-width: 100%;
-    }
-    .images-on .jma-header-content.image .wrap>div {
+    /*.images-on .jma-header-content.image .wrap>div {
         position: absolute;
         top: 0;
         left: 50%;
         width: 100%;
-    }
+    }*/
     .image.jma-header-content .wrap {
         padding: 0
     }
@@ -712,4 +722,12 @@ img.avatar {
 
 .copyright {
     line-height: 170% !important;
+}
+
+/* fix core block bug */
+
+@media (max-width: 782px) {
+    .wp-block-column:not(:first-child), .wp-block-column:nth-child(2n) {
+        margin-left: 0;
+    }
 }
