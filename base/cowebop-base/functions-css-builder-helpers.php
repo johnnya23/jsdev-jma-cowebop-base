@@ -125,3 +125,15 @@ function get_trans($color_in, $trans_amount=0.6)
 
 //to remove lline breaks
 //replace \n "; with ";/*|n */ (remove space after n in search and replce to keep from editting this comment)
+
+/* returns 1 for lightest 0 for darkest */
+function get_lightness_from_hex($hex)
+{
+    list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+    return (0.2126 * $r + 0.7152 * $g + 0.0722 * $b) / 255;
+}
+
+function first_is_lighter($first, $second)
+{
+    return get_lightness_from_hex($first) > get_lightness_from_hex($second);
+}

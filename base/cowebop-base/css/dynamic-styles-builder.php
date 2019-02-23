@@ -206,7 +206,11 @@ $dynamic_styles[1000] = array('.btn, .btn-primary, body .metaslider .theme-defau
     array('border-color', $jma_spec_options['button_font']),
     array('border','solid!important'),
 );
-$border_array = get_tint($jma_spec_options['footer_background_color']);
+/* for icons and borders throughout the site we use the darker of the footer values */
+$adjusted_icon_color = first_is_lighter($jma_spec_options['footer_background_color'], $jma_spec_options['footer_font_color'])? $jma_spec_options['footer_font_color']: $jma_spec_options['footer_background_color'];
+
+
+$border_array = get_tint($adjusted_icon_color);
 $dynamic_styles[1010] = array('textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select',
     array('border-color', $border_array['light_hex'])
 );
@@ -257,9 +261,9 @@ if ($body_shape == 'dark_modular') {
 if ($body_shape != 'stretch') {
     if ($jma_spec_options['border_shadow'] == 'on') {
         $dynamic_styles[3060] = array($border_selector,
-            array('-moz-box-shadow', '0 2px 10px ' . $jma_spec_options['footer_background_color']),
-            array('-webkit-box-shadow', '0 2px 10px ' . $jma_spec_options['footer_background_color']),
-            array('box-shadow', '0 2px 10px ' . $jma_spec_options['footer_background_color'])
+            array('-moz-box-shadow', '0 2px 10px ' . $adjusted_icon_color),
+            array('-webkit-box-shadow', '0 2px 10px ' . $adjusted_icon_color),
+            array('box-shadow', '0 2px 10px ' . $adjusted_icon_color)
         );
     }
 }
@@ -269,7 +273,7 @@ if ($body_shape == 'boxed') {
         array('max-width', $jma_spec_options['site_width'].'px'),
         array('margin-left', 'auto'),
         array('margin-right', 'auto'),
-        array('border', 'solid 1px ' . $jma_spec_options['footer_background_color'])
+        array('border', 'solid 1px ' . $adjusted_icon_color)
     );
     $dynamic_styles[3010] = array('.site-main  #sidebar_layout',
         array('padding', '0 20px')
@@ -285,8 +289,8 @@ if ($body_shape == 'boxed') {
 }
 if ($body_shape == 'stretch_bordered') {
     $dynamic_styles[3040] = array($border_selector,
-        array('border-left', 'solid 1px ' . $jma_spec_options['footer_background_color']),
-        array('border-right', 'solid 1px ' . $jma_spec_options['footer_background_color'])
+        array('border-left', 'solid 1px ' . $adjusted_icon_color),
+        array('border-right', 'solid 1px ' . $adjusted_icon_color)
     );
     $dynamic_styles[3050] = array('.site-main  #sidebar_layout',
         array('padding', '0 20px')
@@ -490,10 +494,10 @@ if ($body_shape != 'dark_modular') {
         );
     } elseif (($jma_spec_options['side_creases_off'] == 1)) {
         $dynamic_styles[5090] = array('min-' . $split_value . '@div.sidebar_left div.left-sidebar div.fixed-sidebar-inner, div.double_sidebar_left div.right-sidebar div.fixed-sidebar-inner, div.double_sidebar div.left-sidebar div.fixed-sidebar-inner',
-            array('border-right', '1px solid '. $jma_spec_options['footer_background_color'])
+            array('border-right', '1px solid '. $adjusted_icon_color)
         );
         $dynamic_styles[5100] = array('min-' . $split_value . '@div.sidebar_right div.right-sidebar div.fixed-sidebar-inner, div.double_sidebar_right div.left-sidebar div.fixed-sidebar-inner, div.double_sidebar div.right-sidebar div.fixed-sidebar-inner',
-            array('border-left', '1px solid '. $jma_spec_options['footer_background_color'])
+            array('border-left', '1px solid '. $adjusted_icon_color)
         );
     }
     $dynamic_styles[5110] = array('div.fixed-sidebar-inner',
@@ -563,8 +567,8 @@ if ($jma_spec_options['title_page_top']) {
 
 
 
-    $banner_border_color = $jma_spec_options['banner_bg_color']? $jma_spec_options['banner_bg_color']: $jma_spec_options['footer_background_color'];
-    $banner_shadow_color = $jma_spec_options['banner_bg_color']? '#000000': $jma_spec_options['footer_background_color'];
+    $banner_border_color = $jma_spec_options['banner_bg_color']? $jma_spec_options['banner_bg_color']: $adjusted_icon_color;
+    $banner_shadow_color = $jma_spec_options['banner_bg_color']? '#000000': $adjusted_icon_color;
     if (!$jma_spec_options['banner_shadows']) {
         $banner_border_style = array('#full-page-title-inner',
             array('padding-top', $jma_spec_options['banner_height'] . 'px'),
@@ -641,14 +645,14 @@ $dynamic_styles[9050] = array('.site-footer a,.header-top a, .header-top .tb-soc
 );
 
 $dynamic_styles[9060] = array('.btn-share',
-    array('color', $jma_spec_options['footer_background_color']),
+    array('color', $adjusted_icon_color),
 );
 
-$dynamic_styles[9070] = array('.tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active,  .tb-nav-trigger:hover, .mobile-nav>li>a, .tb-team-member .member-image::before, .btn-share:hover, .btn-share:focus, .tb-tags a:hover, .tb-tags a:focus, .tb-lang-popup a:hover, .tb-lang-popup a:focus, .post_showcase .showcase-item.has-title .featured-item.showcase .tb-thumb-link:after, .post_showcase .showcase-item.has-title .featured-item.showcase.tb-thumb-link:after',
+$dynamic_styles[9070] = array('.tb-mobile-panel .tb-mobile-menu>li>.menu-btn, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:hover, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:focus, .tb-mobile-panel .tb-mobile-menu>li>.menu-btn:active,  .tb-nav-trigger:hover, .mobile-nav>li>a',
     array('background-color', $jma_spec_options['footer_background_color']),
 );
-$dynamic_styles[9080] = array('.tb-thumb-link .thumb-link-icon, body .metaslider .theme-default .nivo-directionNav a',
-    array('background-color', get_trans($jma_spec_options['footer_background_color'], 0.6)),
+$dynamic_styles[9080] = array('.tb-team-member .member-image::before, .btn-share:hover, .btn-share:focus, .tb-tags a:hover, .tb-tags a:focus, .tb-lang-popup a:hover, .tb-lang-popup a:focus, .post_showcase .showcase-item.has-title .featured-item.showcase .tb-thumb-link:after, .post_showcase .showcase-item.has-title .featured-item.showcase.tb-thumb-link:after, .tb-thumb-link .thumb-link-icon, body .metaslider .theme-default .nivo-directionNav a',
+    array('background-color', get_trans($adjusted_icon_color, 0.6)),
 );
 
 $dynamic_styles[9090] = array('.tb-nav-trigger:hover .hamburger span, .tb-nav-trigger .hamburger span',
@@ -678,13 +682,13 @@ $dynamic_styles[9150] = array('.element-section>.element, .element-columns .elem
     array('margin-bottom', $jma_spec_options['builder_element_vert'] . 'px')
 );
 $dynamic_styles[9160] = array('.tooltip.top .tooltip-arrow, .tb-contact-popover.bottom',
-    array('border-top-color', $jma_spec_options['footer_background_color'])
+    array('border-top-color', $adjusted_icon_color)
 );
 $dynamic_styles[9170] = array('.tooltip.bottom .tooltip-arrow, .tb-contact-popover.bottom > .arrow:after',
-    array('border-bottom-color', $jma_spec_options['footer_background_color'])
+    array('border-bottom-color', $adjusted_icon_color)
 );
 $dynamic_styles[9180] = array('.tooltip-inner',
-    array('border-color', $jma_spec_options['footer_background_color'])
+    array('border-color', $adjusted_icon_color)
 );
 
 $dynamic_styles = apply_filters('dynamic_styles_filter', $dynamic_styles);
