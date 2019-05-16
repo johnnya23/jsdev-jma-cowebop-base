@@ -111,6 +111,11 @@ function jma_add_classes($classes)
     if ($jma_spec_options['title_page_top'] == 1) {
         $classes[] = 'jma-banner-title';
     }
+    if ($jma_spec_options['stack_at_768']) {
+        $classes[] = 'jma-stack-767';
+    } else {
+        $classes[] = 'jma-stack-991';
+    }
     return $classes;
 }
 

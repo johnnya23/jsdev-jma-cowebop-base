@@ -168,34 +168,6 @@ add_action('jma_sidebar_middle', 'jma_sidebar_middle_default');
 /* adds the code for the sortable header base options */
 require_once('options-header-sortable.php');
 
-/* set default stacking of builder columns to 767 px */
-function jma_core_filter($x)
-{
-    $x['columns']['options']['stack']['std'] = 'sm';
-    return $x;
-}
-add_filter('themeblvd_elements', 'jma_core_filter');
-
-/* set default stacking of sdiebars to 767 px */
-function jma_sidebar_layout_stack()
-{
-    return 'sm';
-}
-add_filter('themeblvd_sidebar_layout_stack', 'jma_sidebar_layout_stack');
-
-/* set default stacking of footer columns to 767 px */
-function jma_footer_columns_args($args)
-{
-    $args['stack'] = 'sm';
-    return $args;
-}
-add_filter('themeblvd_footer_columns_args', 'jma_footer_columns_args');
-
-function jma_base_mobile_header_breakpoint()
-{
-    return 768;
-}
-add_filter('themeblvd_mobile_header_breakpoint', 'jma_base_mobile_header_breakpoint');
 
 //grab the values from jma-options.php, jma-options-header.php
 if (!function_exists('jma_get_theme_values')) {
@@ -207,6 +179,49 @@ if (!function_exists('jma_get_theme_values')) {
     }
 }
 $jma_spec_options = jma_get_theme_values();//echo '<pre>';print_r($jma_spec_options);echo '</pre>';
+
+/* set default stacking of builder columns to 767 px */
+function jma_core_filter($x)
+{
+    global $jma_spec_options;
+    if ($jma_spec_options['stack_at_768']) {
+        $x['columns']['options']['stack']['std'] = 'sm';
+    }
+    return $x;
+}
+add_filter('themeblvd_elements', 'jma_core_filter');
+
+/* set default stacking of sdiebars to 767 px */
+function jma_sidebar_layout_stack($stack)
+{
+    global $jma_spec_options;
+    if ($jma_spec_options['stack_at_768']) {
+        $stack = 'sm';
+    }
+    return $stack;
+}
+add_filter('themeblvd_sidebar_layout_stack', 'jma_sidebar_layout_stack');
+
+/* set default stacking of footer columns to 767 px */
+function jma_footer_columns_args($args)
+{
+    global $jma_spec_options;
+    if ($jma_spec_options['stack_at_768']) {
+        $args['stack'] = 'sm';
+    }
+    return $args;
+}
+add_filter('themeblvd_footer_columns_args', 'jma_footer_columns_args');
+
+function jma_base_mobile_header_breakpoint($break)
+{
+    global $jma_spec_options;
+    if ($jma_spec_options['stack_at_768']) {
+        $break = 768;
+    }
+    return $break;
+}
+add_filter('themeblvd_mobile_header_breakpoint', 'jma_base_mobile_header_breakpoint');
 
 /**
  * @function jma_images_on Check to see if images are on for the current page (or specific page)

@@ -18,6 +18,17 @@ $options = array(
         )
     ),
     array(
+    'name' 		=> 'Site Stack Width',
+    'desc' 		=> 'Stack Columns and implement mobile menu at this width',
+    'id' 		=> 'stack_at_768',
+    'std'		=> 1,
+    'type' 		=> 'select',
+    'options'   => array(
+        1 => '768',
+        0 => '992'
+        )
+    ),
+    array(
     'name' 		=> 'Body Shadow',
     'desc' 		=> 'For Boxed and Stretch with Border, add a little shadow outside of border',
     'id' 		=> 'border_shadow',
