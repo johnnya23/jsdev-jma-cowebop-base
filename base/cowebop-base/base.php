@@ -19,7 +19,7 @@ define('JMA_COWEBOP_BASE_URI', plugin_dir_url(__FILE__));
 
 function jma_cowebop_base_icon_js_file_url()
 {
-    return JMA_COWEBOP_BASE_URI . 'assets/js/fontawesome.min.js';//5.4.1
+    return JMA_COWEBOP_BASE_URI . 'assets/js/fontawesome.min.js';//5.8.2
 }
 add_filter('themeblvd_icon_js_file_url', 'jma_cowebop_base_icon_js_file_url');
 

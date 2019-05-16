@@ -38,7 +38,7 @@ if (!function_exists('display_header_slider')) {
         if ($slider_array[0] == 'theme_blvd') {
             $return = themeblvd_slider($slider_array[1]);
         } else {
-            $return = 'errror';
+            $return = '';
         }
 
         return apply_filters('return_display_header_slider', $return, $type_id);
