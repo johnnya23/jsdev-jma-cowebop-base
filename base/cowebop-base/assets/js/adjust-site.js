@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
             $menu.prevAll().each(function() {
                 menu_top_pos += $(this).height();
             });
-            var admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() : 0;
+            var admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() + 'px' : 0;
             var offset = $window.scrollTop();
             var menu_height = $menu.height();
             var $menu_ul = $menu.find('.sf-menu');
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
                 (($(window).height() + menu_height + menu_top_pos + 25) < $('body').height())) {
                 $menu.addClass('fix-menu');
                 $menu.css({
-                    'top': admin_bar_height + 'px',
+                    'top': admin_bar_height,
                     'height': $menu.find('ul.sf-menu').find('li.level-1').find('a').outerHeight() + 'px'
                 });
                 widget_height = 0;
