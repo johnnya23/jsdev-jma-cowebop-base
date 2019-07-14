@@ -407,10 +407,11 @@ function jma_header_content_default()
 
                 //build child theme attributes for menu
                 $logo_image_data = $item['header_element'] == 'access' && $item['logo']? ' data-logoimageheight="' . $jma_spec_options['logo']['image_height'] . '"': '';
+                $menu_vert_padding = ' data-menupadding="' . $jma_spec_options['menu_item_vert_padding'] . '"';
 
                 $kid_sticky_data = $jma_spec_options['child_sticky_menu']? ' data-usechildsticky="true"': '';
 
-                echo '<nav id="' . $item['header_element'] . '" class="header-nav ' . $jma_class . '" role="navigation"' .  $logo_image_data . $kid_sticky_data . '>';
+                echo '<nav id="' . $item['header_element'] . '" class="header-nav ' . $jma_class . '" role="navigation"' . $menu_vert_padding .  $logo_image_data . $kid_sticky_data . '>';
             }
 
 
@@ -453,7 +454,7 @@ function jma_header_content_default()
 		<?php
             } else {// closing elements for nav?>
 			</nav><!-- access -->
-			<div style="clear:both"></div>
+			<div id="menu-follow" style="clear:both"></div>
 		<?php do_action('themeblvd_header_menu_after');
             }
         }

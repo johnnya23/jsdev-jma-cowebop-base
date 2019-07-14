@@ -386,8 +386,6 @@ function generate_style_css()
             }
         }
     }
-    // used to fing sidebar divider shading
-    $css_uri = plugin_dir_url(__FILE__). '/';
 
     $css_dir =  plugin_dir_path(__FILE__). 'css/' ;
 
@@ -395,7 +393,8 @@ function generate_style_css()
 
     $css = build_css($jma_css_values);
 
-    file_put_contents(get_stylesheet_directory() . '/dynamic-styles.css', $css, LOCK_EX); // Save value from end of css/dynamic-styles-builder.php
+
+    update_option('jma_dynamic_styles', $css); // Save value from end of css/dynamic-styles-builder.php
 }
 add_action('after_switch_theme', 'generate_style_css');
 function custom_styles()
@@ -408,10 +407,10 @@ add_action('admin_init', 'custom_styles', 11);
 
 function jma_custom_styles()
 {
-    if (!file_exists(get_stylesheet_directory() . '/dynamic-styles.css')) {
+    if (!get_option('jma_dynamic_styles')) {
         generate_style_css();
     }
-    wp_enqueue_style('jma_dynamic_styles', get_stylesheet_directory_uri(). '/dynamic-styles.css', false, '1.0');
+    wp_add_inline_style('themeblvd-theme', apply_filters('jma_base_css_output', get_option('jma_dynamic_styles')));
 }
 add_action('wp_enqueue_scripts', 'jma_custom_styles', 21);
 

@@ -3,7 +3,6 @@
 // filtering is preferable to altering this file for the sake of updates.
 $dynamic_styles = array();
 
-
 // FORMAT FOR INPUT
 // $dynamic_styles[] = array($selector, array($property, $value)[,array($property, $value)...])
 
@@ -55,6 +54,9 @@ $dynamic_styles[50] =  array('#access.fix-menu' ,// add child sticky-menu
     $dynamic_styles[60] =  array('#access.fix-menu.remove_root_bg' ,// add child sticky-menu when menu root bg off selected
         array('background-color', get_trans($jma_spec_options['header_background_color'], 0.9) . '!important')
     );
+    $dynamic_styles[65] =  array('#access.remove_root_bg' ,// add child sticky-menu when menu root bg off selected
+        array('background-color', $jma_spec_options['header_background_color'] . '!important')
+    );
 if ($jma_spec_options[ 'body_shape' ] == 'boxed' || $jma_spec_options[ 'body_shape' ] == 'dark_modular') {
     $dynamic_styles[70] =  array('min-' . ($jma_spec_options['site_width']+55) . '@#access.fix-menu' ,
         array('width', ($jma_spec_options['site_width']) . 'px')
@@ -87,8 +89,8 @@ $dynamic_styles[130] =  array($base_menus . $ul . 'li a:hover',
     array('color', $jma_spec_options['menu_font_hover']),
     array('background-color', $jma_spec_options['menu_background_hover'])
 );
+$padding_adjust_for_top_highlite = $padding_adjust_for_bottom_highlite = 0;
 if ($jma_spec_options['menu_item_highlight']) {
-    $padding_adjust_for_top_highlite = $padding_adjust_for_bottom_highlite = 0;
     if ($jma_spec_options['menu_item_highlight'] == 'top') {
         $padding_adjust_for_top_highlite =  -4;
     } else {
@@ -128,14 +130,14 @@ if ($logo_in_menu) {
     $logo_height = apply_filters('logo_height_filter', $logo_height);
     $menu_logo_vert_padding = ($logo_height - $jma_spec_options['menu_font_size'])/2;
 
-    $dynamic_styles[190] =  array($base_menus . '.middle ul.sf-menu > li > a',
+    $dynamic_styles[190] =  array($base_menus . '.logo.middle ul.sf-menu > li > a',
         array('padding-top', $menu_logo_vert_padding + $padding_adjust_for_top_highlite . 'px'),
         array('padding-bottom', $menu_logo_vert_padding + $padding_adjust_for_bottom_highlite . 'px')
     );
     $dynamic_styles[200] =  array($base_menus . '.bottom ul.sf-menu',
         array('margin-top', ($logo_height - $jma_spec_options['menu_font_size'] - $jma_spec_options['menu_item_vert_padding']*2) . 'px' )
     );
-    $dynamic_styles[210] =  array($base_menus . '.fix-menu ul.sf-menu > li > a, ' . $base_menus . '.slide-menu ul.sf-menu > li > a',
+    $dynamic_styles[210] =  array($base_menus . '.fix-menu ul.sf-menu > li > a, ' . $base_menus . '.logo.slide-menu ul.sf-menu > li > a',
         array('padding-top', $jma_spec_options['menu_item_vert_padding'] + $padding_adjust_for_top_highlite . 'px'),
         array('padding-bottom', $jma_spec_options['menu_item_vert_padding'] + $padding_adjust_for_bottom_highlite . 'px')
     );
@@ -690,7 +692,7 @@ $dynamic_styles[9170] = array('.tooltip.bottom .tooltip-arrow, .tb-contact-popov
 $dynamic_styles[9180] = array('.tooltip-inner',
     array('border-color', $adjusted_icon_color)
 );
-
+$jma_css_values = '';
 $dynamic_styles = apply_filters('dynamic_styles_filter', $dynamic_styles);
 $jma_css_values =  generic_output($dynamic_styles);
 /* create html output from  $jma_css_values */

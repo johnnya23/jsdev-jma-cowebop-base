@@ -1,31 +1,44 @@
 jQuery(document).ready(function($) {
     $window = $(window);
+    cloned = false;
+
+    var $menu = $('#branding').find('#access');
+    var menu_top_pos = parseInt($('#wrapper').css("padding-top"));
+    $logo_wrap = $menu.find('.site-logo');
+    logo_padding = $logo_wrap.outerHeight() - $logo_wrap.find('img').height();
+
+    $menu.prevAll().each(function() {
+        menu_top_pos += $(this).height();
+    });
 
     function fix_menu() {
+        $('#access').find('.sub-menu').css('display', 'none');
         //reads @media query in base.css to trigger window size change
         if (($('.copyright').css('margin-bottom') == '5px')) {
-            var $menu = $('#branding').find('#access');
-            var menu_top_pos = parseInt($('#wrapper').css("padding-top"));
-            $logo_wrap = $menu.find('.site-logo');
-
-            $menu.prevAll().each(function() {
-                menu_top_pos += $(this).height();
-            });
             var admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() + 'px' : 0;
             var offset = $window.scrollTop();
             var menu_height = $menu.height();
-            var $menu_ul = $menu.find('.sf-menu');
 
             if (offset > menu_top_pos &&
                 (($(window).height() + menu_height + menu_top_pos + 25) < $('body').height())) {
-                $menu.addClass('fix-menu');
-                $menu.css({
-                    'top': admin_bar_height,
-                    'height': $menu.find('ul.sf-menu').find('li.level-1').find('a').outerHeight() + 'px'
-                });
+                if (!cloned) {
+                    $menu.clone(true).prependTo($('#branding').children('.wrap')).addClass('fix-menu');
+                    $menu.find('.sub-menu').css('display', 'none');
+                    menu_padding = $menu.data('menupadding');
+                    $fixed = $('.fix-menu');
+                    $fixed.css({
+                        'top': admin_bar_height
+                    });
+                    $fixed.find('ul').children('li').find('a').css({
+                        'padding-top': menu_padding,
+                        'padding-bottom': menu_padding
+                    });
+                }
+
+                cloned = true;
                 widget_height = 0;
 
-                $menu.next().css('margin-top', menu_height + 'px');
+                $menu_ul = $menu.find('.sf-menu');
                 if ($menu.hasClass('bottom')) {
                     if ($menu.find('.jma-header-right').length) {
                         widget_height = $menu.find('.jma-header-right').outerHeight(true) + parseInt($menu.find('.jma-header-right').css('top'), 10);
@@ -36,48 +49,40 @@ jQuery(document).ready(function($) {
                         $menu_ul.css('margin-top', '');
                     }
                 }
-                logo_vert_padding = $logo_wrap.outerHeight() - $logo_wrap.height();
-                $logo_wrap.find('img').css({
-                    'height': (widget_height + $menu_ul.outerHeight() - logo_vert_padding) + 'px'
+                $fixed.find('.site-logo').find('img').css({
+                    'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').height() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
                 });
             } else {
-                $menu.removeClass('fix-menu');
-                $menu.css({
-                    'top': '',
-                    'height': ''
-                });
-                $menu.next().css('margin-top', '');
-                $menu_ul.css('margin-top', '');
-                $logo_wrap.find('img').css({
-                    'height': $logo_wrap.find('img').attr('height') + 'px'
-                });
+                $('.fix-menu').remove();
+                cloned = false;
             }
         }
     }
 
     function header_adjust() {
-        var $menu = $('.header-nav');
         var header_width = $('#branding').width();
-        var logo_width = $('.logo.header-nav .site-logo').outerWidth();
-        var menu_width = $('.logo.header-nav ul.sf-menu').width();
-        if ((logo_width + menu_width + 6) > header_width) {
-            $menu.addClass('slide-menu');
-        } else {
-            $menu.removeClass('slide-menu');
-        }
+        $('.logo.header-nav').each(function() {
+            $this = $(this);
+            logo_width = $this.find('.site-logo').outerWidth();
+            menu_width = $this.find('ul.sf-menu').outerWidth();
+            if ((logo_width + menu_width + 6) > header_width) {
+                $this.addClass('slide-menu');
+            } else {
+                $this.removeClass('slide-menu');
+            }
+        });
     }
 
     $window.load(function() {
-        header_adjust();
         if ($('#access').data('usechildsticky')) {
             fix_menu();
         }
+        header_adjust();
     });
     $window.scroll(function() {
         //do this one immediately
         if ($('#access').data('usechildsticky')) {
             fix_menu();
-            header_adjust();
         }
     });
 

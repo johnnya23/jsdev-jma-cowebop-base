@@ -324,6 +324,10 @@ body #branding>div ul.sf-menu .sf-mega ul {
     }
 }
 
+#access {
+    z-index: 20;
+}
+
 /* fix menu on scroll and hide on sm_divice */
 @media(min-width:768px) {
     .jma-stack-767 #access.fix-menu {
@@ -337,14 +341,7 @@ body #branding>div ul.sf-menu .sf-mega ul {
 
     .jma-stack-767.stretched #access.fix-menu {
         width: 100%;
-    }
-
-    .jma-stack-767 #access.fix-menu .image-logo {
-        position: absolute;
-    }
-
-    .jma-stack-767 #access.slide-menu .image-logo {
-        position: relative;
+        z-index: 10;
     }
 
     .jma-stack-767 .header-nav .site-logo img {
@@ -355,12 +352,12 @@ body #branding>div ul.sf-menu .sf-mega ul {
         transition: all 0.15s;
     }
 
-    .jma-stack-767 .header-nav.slide-menu .site-logo {
-        transition: height 0.15s;
+    .jma-stack-767 .header-nav.slide-menu .sf-menu {
+        transition: margin-top 0.15s;
     }
 
-    .jma-stack-767 .header-nav.slide-menu .sf-menu {
-        transition: all 0.15s;
+    .jma-stack-767 .header-nav.slide-menu .site-logo {
+        transition: height 0.15s;
     }
 
     body.jma-stack-767 #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
@@ -385,14 +382,7 @@ body #branding>div ul.sf-menu .sf-mega ul {
 
     .jma-stack-991.stretched #access.fix-menu {
         width: 100%;
-    }
-
-    .jma-stack-991 #access.fix-menu .image-logo {
-        position: absolute;
-    }
-
-    .jma-stack-991 #access.slide-menu .image-logo {
-        position: relative;
+        z-index: 10;
     }
 
     .jma-stack-991 .header-nav .site-logo img {
@@ -408,7 +398,7 @@ body #branding>div ul.sf-menu .sf-mega ul {
     }
 
     .jma-stack-991 .header-nav.slide-menu .sf-menu {
-        transition: all 0.15s;
+        transition: margin-top 0.15s;
     }
 
     body.jma-stack-991 #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
@@ -419,6 +409,10 @@ body #branding>div ul.sf-menu .sf-mega ul {
         display: none;
         height: 0;
     }
+}
+
+#menu-follow {
+    transition: all 0.15s;
 }
 
 /* adjust menu for no bg */
