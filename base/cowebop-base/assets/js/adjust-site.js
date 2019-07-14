@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
                 (($(window).height() + menu_height + menu_top_pos + 25) < $('body').height())) {
                 if (!cloned) {
                     $menu.clone(true).prependTo($('#branding').children('.wrap')).addClass('fix-menu');
-                    $menu.find('.sub-menu').css('display', 'none');
+                    $menu.addClass('replaced').find('.sub-menu').css('display', 'none');
                     menu_padding = $menu.data('menupadding');
                     $fixed = $('.fix-menu');
                     $fixed.css({
@@ -53,6 +53,7 @@ jQuery(document).ready(function($) {
                     'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').height() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
                 });
             } else {
+                $menu.removeClass('replaced');
                 $('.fix-menu').remove();
                 cloned = false;
             }

@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: JMA CoWEBop Base 7.2
+Plugin Name: JMA CoWEBop Base 7.3
 Description: This plugin adds a theme base provides styling and structure options like a child theme
-Version: 1.2
+Version: 1.3
 Author: John Antonacci
 Author URI: http://cleansupersites.com
 License: GPL2
