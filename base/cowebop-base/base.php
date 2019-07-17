@@ -30,6 +30,43 @@ if (!function_exists('jmaStartsWith')) {
     }
 }
 
+function jmaminifyCss($css)
+{
+    // some of the following functions to minimize the css-output are directly taken
+    // from the awesome CSS JS Booster: https://github.com/Schepp/CSS-JS-Booster
+    // all credits to Christian Schaefer: http://twitter.com/derSchepp
+    // remove comments
+    $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+    // backup values within single or double quotes
+    preg_match_all('/(\'[^\']*?\'|"[^"]*?")/ims', $css, $hit, PREG_PATTERN_ORDER);
+    for ($i=0; $i < count($hit[1]); $i++) {
+        $css = str_replace($hit[1][$i], '##########' . $i . '##########', $css);
+    }
+    // remove traling semicolon of selector's last property
+    $css = preg_replace('/;[\s\r\n\t]*?}[\s\r\n\t]*/ims', "}\r\n", $css);
+    // remove any whitespace between semicolon and property-name
+    $css = preg_replace('/;[\s\r\n\t]*?([\r\n]?[^\s\r\n\t])/ims', ';$1', $css);
+    // remove any whitespace surrounding property-colon
+    $css = preg_replace('/[\s\r\n\t]*:[\s\r\n\t]*?([^\s\r\n\t])/ims', ':$1', $css);
+    // remove any whitespace surrounding selector-comma
+    $css = preg_replace('/[\s\r\n\t]*,[\s\r\n\t]*?([^\s\r\n\t])/ims', ',$1', $css);
+    // remove any whitespace surrounding opening parenthesis
+    $css = preg_replace('/[\s\r\n\t]*{[\s\r\n\t]*?([^\s\r\n\t])/ims', '{$1', $css);
+    // remove any whitespace between numbers and units
+    $css = preg_replace('/([\d\.]+)[\s\r\n\t]+(px|em|pt|%)/ims', '$1$2', $css);
+    // shorten zero-values
+    $css = preg_replace('/([^\d\.]0)(px|em|pt|%)/ims', '$1', $css);
+    // constrain multiple whitespaces
+    $css = preg_replace('/\p{Zs}+/ims', ' ', $css);
+    // remove newlines
+    $css = str_replace(array("\r\n", "\r", "\n"), '', $css);
+    // Restore backupped values within single or double quotes
+    for ($i=0; $i < count($hit[1]); $i++) {
+        $css = str_replace('##########' . $i . '##########', $hit[1][$i], $css);
+    }
+    return $css;
+}
+
 /**
  * @function is_kid checks to see if the current post is a child of $pid
  *
@@ -184,7 +221,7 @@ $jma_spec_options = jma_get_theme_values();//echo '<pre>';print_r($jma_spec_opti
 function jma_core_filter($x)
 {
     global $jma_spec_options;
-    if ($jma_spec_options['stack_at_768']) {
+    if (isset($jma_spec_options['stack_at_768']) && $jma_spec_options['stack_at_768']) {
         $x['columns']['options']['stack']['std'] = 'sm';
     }
     return $x;
@@ -195,7 +232,7 @@ add_filter('themeblvd_elements', 'jma_core_filter');
 function jma_sidebar_layout_stack($stack)
 {
     global $jma_spec_options;
-    if ($jma_spec_options['stack_at_768']) {
+    if (isset($jma_spec_options['stack_at_768']) && $jma_spec_options['stack_at_768']) {
         $stack = 'sm';
     }
     return $stack;
@@ -206,7 +243,7 @@ add_filter('themeblvd_sidebar_layout_stack', 'jma_sidebar_layout_stack');
 function jma_footer_columns_args($args)
 {
     global $jma_spec_options;
-    if ($jma_spec_options['stack_at_768']) {
+    if (isset($jma_spec_options['stack_at_768']) && $jma_spec_options['stack_at_768']) {
         $args['stack'] = 'sm';
     }
     return $args;
@@ -216,7 +253,7 @@ add_filter('themeblvd_footer_columns_args', 'jma_footer_columns_args');
 function jma_base_mobile_header_breakpoint($break)
 {
     global $jma_spec_options;
-    if ($jma_spec_options['stack_at_768']) {
+    if (isset($jma_spec_options['stack_at_768']) && $jma_spec_options['stack_at_768']) {
         $break = 768;
     }
     return $break;

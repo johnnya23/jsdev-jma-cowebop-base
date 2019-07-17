@@ -111,7 +111,7 @@ function jma_add_classes($classes)
     if ($jma_spec_options['title_page_top'] == 1) {
         $classes[] = 'jma-banner-title';
     }
-    if ($jma_spec_options['stack_at_768']) {
+    if (isset($jma_spec_options['stack_at_768']) && $jma_spec_options['stack_at_768']) {
         $classes[] = 'jma-stack-767';
     } else {
         $classes[] = 'jma-stack-991';
@@ -349,6 +349,115 @@ if (!function_exists('jma_do_floating_search')) {
 themeblvd_edit_option('layout', 'header_mobile', 'mobile_logo', 'std', 'default');
 
 
+
+
+function jma_build_header_item($item, $jma_spec_options)
+{
+    if (!$item) {
+        return;
+    }
+    //build class
+    $jma_class = 'jma-header-item ';
+    foreach ($item as $selector => $element) {
+        if ($element == 1) {
+            $jma_class .= ' ' . $selector;
+        }
+    }
+    $jma_class .= ' ' . $item['header_element'];
+    if ($item['menu_align']) {
+        $jma_class .= ' ' . $item['menu_align'];
+    }
+    if ($item['menu_vert_align']) {
+        $jma_class .= ' ' . $item['menu_vert_align'];
+    }
+    if ($jma_spec_options['add_search_popup'] && $item['header_element'] == 'access') {
+        $jma_class .= ' has-search';
+    }
+    if ($item['sidebar']['type']) {
+        $jma_class .= ' sidebar';
+    }
+    if ($item['custom_class']) {
+        $jma_class .= ' '. $item['custom_class'];
+    }
+
+    //end build class for nav
+
+
+    if (strpos($item['header_element'], 'content')) {
+        // CONTENT CODE CONTENT CODE
+        $jma_class .= ' header-content';
+
+        /* opening tag for content */  ?>
+    			<div class="<?php echo $jma_class ?>" role="banner">
+
+    		<?php
+    } else {// MENU CODE MENU CODE
+
+        //do_action parent theme code to open menu
+        do_action('themeblvd_header_menu_before');
+
+        //build child theme attributes for menu
+        $logo_image_data = $item['header_element'] == 'access' && $item['logo']? ' data-logoimageheight="' . $jma_spec_options['logo']['image_height'] . '"': '';
+        $menu_vert_padding = ' data-menupadding="' . $jma_spec_options['menu_item_vert_padding'] . '"';
+
+        $kid_sticky_data = $jma_spec_options['child_sticky_menu']? ' data-usechildsticky="true"': '';
+
+        echo '<nav id="' . $item['header_element'] . '" class="header-nav ' . $jma_class . '" role="navigation"' . $menu_vert_padding .  $logo_image_data . $kid_sticky_data . '>';
+    }
+
+
+    // CODE FOR ALL ELEMENTS (at this point we have opening tags )
+
+    /* this will either build simple header content then underlay image or add menu (with logo if called for) */
+    if ((strpos($item['header_element'], 'access')!== false) || $item['logo'] || $item['sidebar']['type']) {
+        ?>
+
+    			<div class="wrap clearfix"><div class="clearfix"><div class="clearfix">
+    				<?php
+                    /**
+                     * @hooked themeblvd_header_logo_default - 10
+                     */
+                    if ($item['logo']) {//maybe logo followed by either menu or sidebar or neither
+                        do_action('themeblvd_header_logo');
+                    }
+        if ($item['sidebar']['type']) {
+            $widget_html = '<div class="jma-header-right">' . themeblvd_get_widgets($item['sidebar']['sidebar']) . '</div>';
+            echo $widget_html;
+        }
+        if (!strpos($item['header_element'], 'content')) {//cant have menu with sidebar
+            $menu = $item['header_element'] == 'access'? 'primary': 'jma_secondary_menu';
+            wp_nav_menu(themeblvd_get_wp_nav_menu_args($menu));
+            //use the parent theme addon hook for primary menu only
+            $addon = $menu === 'primary'? 'themeblvd_header_menu_addon': 'jma_seconary_header_menu_addon';
+            do_action($addon);
+        } ?>
+    			</div></div></div><!-- .wrap (end) -->
+
+    			<?php
+    }// end this will either build simple header content then underlay image or add menu (with logo if called for)
+    //adds all the image code here (image is considered a content item)
+    if ($item['header_element'] == 'image jma-header-content') {
+        do_action('jma_header_image');
+    }
+
+    if (strpos($item['header_element'], 'content')) {/* closing element for content*/ ?>
+    			</div><!-- .header-content (end) -->
+    		<?php
+    } else {// closing elements for nav?>
+    			</nav><!-- access -->
+    			<div id="menu-follow" style="clear:both"></div>
+    		<?php do_action('themeblvd_header_menu_after');
+    }
+}
+
+
+
+
+
+
+
+
+
 /**
  * @function jma_header_content_default loop thru the sortable header elements
  * replaces
@@ -364,99 +473,16 @@ function jma_header_content_default()
     //echo '<pre>';print_r($items);echo '</pre>';echo jma_images_on();
     if (is_array($items)) {
         foreach ($items as $item) {
-
-        //build class
-            $jma_class = 'jma-header-item ';
-            foreach ($item as $selector => $element) {
-                if ($element == 1) {
-                    $jma_class .= ' ' . $selector;
-                }
-            }
-            $jma_class .= ' ' . $item['header_element'];
-            if ($item['menu_align']) {
-                $jma_class .= ' ' . $item['menu_align'];
-            }
-            if ($item['menu_vert_align']) {
-                $jma_class .= ' ' . $item['menu_vert_align'];
-            }
-            if ($jma_spec_options['add_search_popup'] && $item['header_element'] == 'access') {
-                $jma_class .= ' has-search';
-            }
-            if ($item['sidebar']['type']) {
-                $jma_class .= ' sidebar';
-            }
-            if ($item['custom_class']) {
-                $jma_class .= ' '. $item['custom_class'];
-            }
-
-            //end build class for nav
-
-
-            if (strpos($item['header_element'], 'content')) {
-                // CONTENT CODE CONTENT CODE
-                $jma_class .= ' header-content';
-
-                /* opening tag for content */  ?>
-			<div class="<?php echo $jma_class ?>" role="banner">
-
-		<?php
-            } else {// MENU CODE MENU CODE
-
-                //do_action parent theme code to open menu
-                do_action('themeblvd_header_menu_before');
-
-                //build child theme attributes for menu
-                $logo_image_data = $item['header_element'] == 'access' && $item['logo']? ' data-logoimageheight="' . $jma_spec_options['logo']['image_height'] . '"': '';
-                $menu_vert_padding = ' data-menupadding="' . $jma_spec_options['menu_item_vert_padding'] . '"';
-
-                $kid_sticky_data = $jma_spec_options['child_sticky_menu']? ' data-usechildsticky="true"': '';
-
-                echo '<nav id="' . $item['header_element'] . '" class="header-nav ' . $jma_class . '" role="navigation"' . $menu_vert_padding .  $logo_image_data . $kid_sticky_data . '>';
-            }
-
-
-            // CODE FOR ALL ELEMENTS (at this point we have opening tags )
-
-            /* this will either build simple header content then underlay image or add menu (with logo if called for) */
-            if ((strpos($item['header_element'], 'access')!== false) || $item['logo'] || $item['sidebar']['type']) {
-                ?>
-
-			<div class="wrap clearfix"><div class="clearfix"><div class="clearfix">
-				<?php
-                /**
-                 * @hooked themeblvd_header_logo_default - 10
-                 */
-                if ($item['logo']) {//maybe logo followed by either menu or sidebar or neither
-                    do_action('themeblvd_header_logo');
-                }
-                if ($item['sidebar']['type']) {
-                    $widget_html = '<div class="jma-header-right">' . themeblvd_get_widgets($item['sidebar']['sidebar']) . '</div>';
-                    echo $widget_html;
-                }
-                if (!strpos($item['header_element'], 'content')) {//cant have menu with sidebar
-                    $menu = $item['header_element'] == 'access'? 'primary': 'jma_secondary_menu';
-                    wp_nav_menu(themeblvd_get_wp_nav_menu_args($menu));
-                    //use the parent theme addon hook for primary menu only
-                    $addon = $menu === 'primary'? 'themeblvd_header_menu_addon': 'jma_seconary_header_menu_addon';
-                    do_action($addon);
-                } ?>
-			</div></div></div><!-- .wrap (end) -->
-
-			<?php
-            }// end this will either build simple header content then underlay image or add menu (with logo if called for)
-            //adds all the image code here (image is considered a content item)
-            if ($item['header_element'] == 'image jma-header-content') {
-                do_action('jma_header_image');
-            }
-
-            if (strpos($item['header_element'], 'content')) {/* closing element for content*/ ?>
-			</div><!-- .header-content (end) -->
-		<?php
-            } else {// closing elements for nav?>
-			</nav><!-- access -->
-			<div id="menu-follow" style="clear:both"></div>
-		<?php do_action('themeblvd_header_menu_after');
-            }
+            $item = apply_filters('jma_build_header_' . str_replace(' ', '_', $item['header_element']) . '_item', $item);
+            jma_build_header_item($item, $jma_spec_options);
         }
     }
 }
+
+/* add footer elemetn to facilite  site width detection */
+
+function jma_base_add_site_width_checker()
+{
+    echo '<div class="dont-edit-this-element"></div>';
+}
+add_action('themeblvd_after', 'jma_base_add_site_width_checker');

@@ -123,24 +123,23 @@ if (!function_exists('jma_header_image_html')) {
         $margin_bottom = apply_filters('header_image_bottom', $jma_spec_options[$marg_bottom_string]);
 
         $width_string = is_front_page() ? 'header_image_width' : 'header_interior_width';
-        $page_width = $jma_spec_options['site_width']; ?>
+        $page_width = $jma_spec_options['site_width'];
 
-	<div class="jma-header-image" style="padding-top: <?php echo $margin_top; ?>px;
-		padding-bottom: <?php echo $margin_bottom ?>px"
-		data-image_width ="<?php echo $header_image_attr['width']; ?>"
-		data-image_height ="<?php echo $header_image_attr['height']; ?>"
-		data-width ="<?php echo $page_width; ?>" >
+        echo '<div class="jma-header-image" style="padding-top:' .  $margin_top . 'px;
+		padding-bottom:' .  $margin_bottom  . 'px"
+		data-image_width ="' .  $header_image_attr['width'] . '"
+		data-image_height ="' .  $header_image_attr['height'] . '"
+		data-width ="' .  $page_width . '" >
 		<div class="jma-header-image-wrap"
-		style="max-width: <?php echo $header_image_attr['width']; ?>px;
+		style="max-width:' .  $header_image_attr['width'] . 'px;
 		position: relative;
-		z-index: 0">
+		z-index: 0">';
 
-			<?php do_action('jma_header_image_before');
+        do_action('jma_header_image_before');
         echo get_header_image_code($jma_spec_options, $header_image_size_string);
-        do_action('jma_header_image_after'); ?>
+        do_action('jma_header_image_after');
 
-		</div>
-	</div>
-	<?php
+        echo '</div>';
+        echo '</div>';
     }
 }

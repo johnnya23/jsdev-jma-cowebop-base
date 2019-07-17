@@ -12,9 +12,11 @@ jQuery(document).ready(function($) {
     });
 
     function fix_menu() {
+        $menu.find('.sub-menu').css('display', 'none');
         $('#access').find('.sub-menu').css('display', 'none');
         //reads @media query in base.css to trigger window size change
-        if (($('.copyright').css('margin-bottom') == '5px')) {
+        width_val = $('body').hasClass('jma-stack-991') ? 7 : 4;
+        if ($('.dont-edit-this-element').css('z-index') > width_val) {
             var admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() + 'px' : 0;
             var offset = $window.scrollTop();
             var menu_height = $menu.height();
@@ -23,7 +25,6 @@ jQuery(document).ready(function($) {
                 (($(window).height() + menu_height + menu_top_pos + 25) < $('body').height())) {
                 if (!cloned) {
                     $menu.clone(true).prependTo($('#branding').children('.wrap')).addClass('fix-menu');
-                    $menu.addClass('replaced').find('.sub-menu').css('display', 'none');
                     menu_padding = $menu.data('menupadding');
                     $fixed = $('.fix-menu');
                     $fixed.css({
@@ -53,10 +54,12 @@ jQuery(document).ready(function($) {
                     'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').height() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
                 });
             } else {
-                $menu.removeClass('replaced');
                 $('.fix-menu').remove();
                 cloned = false;
             }
+        } else {
+            $('.fix-menu').remove();
+            cloned = false;
         }
     }
 
