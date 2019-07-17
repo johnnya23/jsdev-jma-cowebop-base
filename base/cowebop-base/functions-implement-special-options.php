@@ -353,6 +353,7 @@ themeblvd_edit_option('layout', 'header_mobile', 'mobile_logo', 'std', 'default'
 
 function jma_build_header_item($item, $jma_spec_options)
 {
+    //if this is false (through the filter)
     if (!$item) {
         return;
     }
@@ -470,10 +471,12 @@ function jma_header_content_default()
     global $jma_spec_options;
 
     $items = $jma_spec_options['header_content'];
-    //echo '<pre>';print_r($items);echo '</pre>';echo jma_images_on();
     if (is_array($items)) {
         foreach ($items as $item) {
-            $item = apply_filters('jma_build_header_' . str_replace(' ', '_', $item['header_element']) . '_item', $item);
+            $filter_name = 'jma_build_header_' . str_replace(array(' ', '-'), array('_', '_'), $item['header_element']) . '_item';
+            //mainly with filter we can supress diplay and call jma_build_header_item elsewhere
+            $item = apply_filters($filter_name, $item);
+
             jma_build_header_item($item, $jma_spec_options);
         }
     }
@@ -483,6 +486,6 @@ function jma_header_content_default()
 
 function jma_base_add_site_width_checker()
 {
-    echo '<div class="dont-edit-this-element"></div>';
+    echo '<div id="dont-edit-this-element"></div>';
 }
 add_action('themeblvd_after', 'jma_base_add_site_width_checker');

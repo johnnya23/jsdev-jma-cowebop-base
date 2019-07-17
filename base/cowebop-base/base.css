@@ -20,19 +20,19 @@ body .site-copyright .copyright {
     }
 }
 
-.dont-edit-this-element {
+#dont-edit-this-element {
     z-index: 20;
     position: relative;
 }
 
 @media(max-width:991px) {
-    .dont-edit-this-element {
+    #dont-edit-this-element {
         z-index: 10;
     }
 }
 
 @media(max-width:767px) {
-    .dont-edit-this-element {
+    #dont-edit-this-element {
         z-index: 5;
     }
 }
