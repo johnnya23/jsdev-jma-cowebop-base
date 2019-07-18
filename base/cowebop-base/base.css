@@ -391,8 +391,9 @@ body #branding>div ul.sf-menu .sf-mega ul {
     }
 }
 
-#access {
-    z-index: 20;
+#branding>.wrap>* {
+    z-index: 5;
+    position: relative;
 }
 
 #access.fix-menu {
@@ -402,6 +403,10 @@ body #branding>div ul.sf-menu .sf-mega ul {
     -webkit-box-shadow: 0 0 10px #cccccc;
     box-shadow: 0 0 10px #cccccc;
     z-index: 10;
+}
+
+#access.header-nav {
+    z-index: 20;
 }
 
 .stretched #access.fix-menu {

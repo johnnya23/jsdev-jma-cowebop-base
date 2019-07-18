@@ -8,7 +8,9 @@ jQuery(document).ready(function($) {
     logo_padding = $logo_wrap.outerHeight() - $logo_wrap.find('img').height();
 
     $menu.prevAll().each(function() {
-        menu_top_pos += $(this).height();
+        $this = $(this);
+        $this.css('z-index', '20');
+        menu_top_pos += $this.height();
     });
 
     function fix_menu() {
