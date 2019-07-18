@@ -76,6 +76,11 @@ body.search {
         clear: both;
     }
 
+    .jma-stack-991 .site-logo {
+        clear: both;
+        margin-bottom: 20px;
+    }
+
     .jma-stack-991 .header-top {
         display: none
     }
@@ -97,8 +102,13 @@ body.search {
 }
 
 @media(max-width:767px) {
-    .jma-stack-767 .jma-header-item, .jma-stack-991 .jma-header-right {
+    .jma-stack-767 .jma-header-item, .jma-stack-767 .jma-header-right {
         clear: both;
+    }
+
+    .jma-stack-767 .site-logo {
+        clear: both;
+        margin-bottom: 20px;
     }
 
     .jma-stack-767 .header-top {
@@ -385,22 +395,25 @@ body #branding>div ul.sf-menu .sf-mega ul {
     z-index: 20;
 }
 
+#access.fix-menu {
+    max-width: 100%;
+    position: fixed;
+    -moz-box-shadow: 0 0 10px #cccccc;
+    -webkit-box-shadow: 0 0 10px #cccccc;
+    box-shadow: 0 0 10px #cccccc;
+    z-index: 10;
+}
+
+.stretched #access.fix-menu {
+    width: 100%;
+}
+
+body #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
+    border-color: transparent;
+}
+
 /* fix menu on scroll and hide on sm_divice */
 @media(min-width:768px) {
-    .jma-stack-767 #access.fix-menu {
-        max-width: 100%;
-        position: fixed;
-        -moz-box-shadow: 0 0 10px #cccccc;
-        -webkit-box-shadow: 0 0 10px #cccccc;
-        box-shadow: 0 0 10px #cccccc;
-        z-index: 100;
-    }
-
-    .jma-stack-767.stretched #access.fix-menu {
-        width: 100%;
-        z-index: 10;
-    }
-
     .jma-stack-767 .header-nav .site-logo img {
         transition: height 0.15s;
     }
@@ -417,10 +430,6 @@ body #branding>div ul.sf-menu .sf-mega ul {
         transition: height 0.15s;
     }
 
-    body.jma-stack-767 #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
-        border-color: transparent;
-    }
-
     .jma-stack-767 .sm_device {
         display: none;
         height: 0;
@@ -428,20 +437,6 @@ body #branding>div ul.sf-menu .sf-mega ul {
 }
 
 @media(min-width:992px) {
-    .jma-stack-991 #access.fix-menu {
-        max-width: 100%;
-        position: fixed;
-        -moz-box-shadow: 0 0 10px #cccccc;
-        -webkit-box-shadow: 0 0 10px #cccccc;
-        box-shadow: 0 0 10px #cccccc;
-        z-index: 100;
-    }
-
-    .jma-stack-991.stretched #access.fix-menu {
-        width: 100%;
-        z-index: 10;
-    }
-
     .jma-stack-991 .header-nav .site-logo img {
         transition: height 0.15s;
     }
@@ -456,10 +451,6 @@ body #branding>div ul.sf-menu .sf-mega ul {
 
     .jma-stack-991 .header-nav.slide-menu .sf-menu {
         transition: margin-top 0.15s;
-    }
-
-    body.jma-stack-991 #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
-        border-color: transparent;
     }
 
     .jma-stack-991 .sm_device {
