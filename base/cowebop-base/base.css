@@ -396,6 +396,11 @@ body #branding>div ul.sf-menu .sf-mega ul {
     position: relative;
 }
 
+#branding>.wrap>ul.mobile-nav {
+    z-index: 25;
+    position: absolute;
+}
+
 #access.fix-menu {
     max-width: 100%;
     position: fixed;

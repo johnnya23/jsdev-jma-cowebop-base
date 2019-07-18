@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
         $menu.find('.sub-menu').css('display', 'none');
         $('#access').find('.sub-menu').css('display', 'none');
         //reads @media query in base.css to trigger window size change
-        width_val = $('body').hasClass('jma-stack-991') ? 7 : 4;
+        width_val = $('body').hasClass('jma-stack-991') ? 12 : 7;
         if ($('#dont-edit-this-element').css('z-index') > width_val) {
             var admin_bar_height = $('#wpadminbar').length ? $('#wpadminbar').height() + 'px' : 0;
             var offset = $window.scrollTop();
