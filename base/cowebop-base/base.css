@@ -408,6 +408,10 @@ body #branding>div ul.sf-menu .sf-mega ul {
     width: 100%;
 }
 
+#access.fix-menu .clearfix>.clearfix>ul.sf-menu {
+    margin: 0 !important;
+}
+
 body #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
     border-color: transparent;
 }

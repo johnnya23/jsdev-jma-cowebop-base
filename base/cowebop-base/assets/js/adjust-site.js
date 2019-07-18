@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
                     if ($menu.find('.jma-header-right').length) {
                         widget_height = $menu.find('.jma-header-right').outerHeight(true) + parseInt($menu.find('.jma-header-right').css('top'), 10);
                     }
-                    if (!$menu.hasClass('slide-menu')) {
+                    if ($menu.hasClass('slide-menu')) {
                         $menu_ul.css('margin-top', widget_height + 'px');
                     } else {
                         $menu_ul.css('margin-top', '');
