@@ -12,6 +12,8 @@ jQuery(document).ready(function($) {
         $this.css('z-index', '20');
         menu_top_pos += $this.height();
     });
+    $body = $('body');
+    body_pos = $body.position();
 
     function fix_menu() {
         $menu.find('.sub-menu').css('display', 'none');
@@ -23,7 +25,9 @@ jQuery(document).ready(function($) {
             var offset = $window.scrollTop();
             var menu_height = $menu.height();
 
-            if (offset > menu_top_pos) {
+
+            if (offset > menu_top_pos &&
+                (($(window).height() + menu_height + menu_top_pos + 25) < $body.height() + body_pos.top)) {
                 if (!cloned) {
                     $menu.clone(true).prependTo($('#branding').children('.wrap')).addClass('fix-menu');
                     menu_padding = $menu.data('menupadding');
