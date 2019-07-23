@@ -26,8 +26,7 @@ jQuery(document).ready(function($) {
             var menu_height = $menu.height();
 
 
-            if (offset > menu_top_pos &&
-                (($(window).height() + menu_height + menu_top_pos + 25) < $body.height() + body_pos.top)) {
+            if (offset > menu_top_pos) {
                 if (!cloned) {
                     $menu.clone(true).prependTo($('#branding').children('.wrap')).addClass('fix-menu');
                     menu_padding = $menu.data('menupadding');
