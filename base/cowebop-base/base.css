@@ -939,6 +939,11 @@ img.avatar {
     line-height: 170% !important;
 }
 
+.copyright p {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 /* fix core block bug */
 @media (max-width: 782px) {
     .wp-block-column:not(:first-child), .wp-block-column:nth-child(2n) {
