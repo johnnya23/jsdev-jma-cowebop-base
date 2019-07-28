@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
     //main_pos = parseInt($('#main').css('margin-top'), 10);
 
     function fix_menu() {
-        main_pos = $body.attr('data-available_height');
+        main_pos = $.isNumeric($body.attr('data-available_height')) ? $body.attr('data-available_height') : 0;
         $menu.find('.sub-menu').css('display', 'none');
         $('#access').find('.sub-menu').css('display', 'none');
         //reads @media query in base.css to trigger window size change
