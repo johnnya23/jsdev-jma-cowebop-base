@@ -6,16 +6,19 @@ jQuery(document).ready(function($) {
     var menu_top_pos = parseInt($('#wrapper').css("padding-top"));
     $logo_wrap = $menu.find('.site-logo');
     logo_padding = $logo_wrap.outerHeight() - $logo_wrap.find('img').height();
-
+    z_index = 21;
     $menu.prevAll().each(function() {
         $this = $(this);
-        $this.css('z-index', '20');
+        $this.css('z-index', z_index);
+        z_index++;
         menu_top_pos += $this.height();
     });
     $body = $('body');
-    body_pos = $body.position();
+
+    //main_pos = parseInt($('#main').css('margin-top'), 10);
 
     function fix_menu() {
+        main_pos = $body.attr('data-available_height');
         $menu.find('.sub-menu').css('display', 'none');
         $('#access').find('.sub-menu').css('display', 'none');
         //reads @media query in base.css to trigger window size change
@@ -26,7 +29,8 @@ jQuery(document).ready(function($) {
             var menu_height = $menu.height();
 
 
-            if (offset > menu_top_pos) {
+            if (offset > menu_top_pos &&
+                (($(window).height() + menu_height + menu_top_pos + 25) < $('body').height() + main_pos)) {
                 if (!cloned) {
                     $menu.clone(true).prependTo($('#branding').children('.wrap')).addClass('fix-menu');
                     menu_padding = $menu.data('menupadding');

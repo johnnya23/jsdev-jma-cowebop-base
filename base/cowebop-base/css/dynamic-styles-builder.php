@@ -690,7 +690,8 @@ $dynamic_styles[9170] = array('.tooltip.bottom .tooltip-arrow, .tb-contact-popov
     array('border-bottom-color', $adjusted_icon_color)
 );
 $dynamic_styles[9180] = array('.tooltip-inner',
-    array('border-color', $adjusted_icon_color)
+    array('border-color', $adjusted_icon_color),
+    array('color', $adjusted_icon_color . '!important')
 );
 $jma_css_values = '';
 $dynamic_styles = apply_filters('dynamic_styles_filter', $dynamic_styles);
