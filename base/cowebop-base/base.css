@@ -479,43 +479,42 @@ body #branding>.wrap #access.fix-menu .wrap ul.sf-menu>li {
 
 /* adjust menu for no bg */
 body #branding>.wrap .remove_root_bg {
-    background: none;
     border-top: none;
     border-bottom: none;
 }
 
-body #branding>.wrap .header-nav.remove_root_bg .wrap ul.sf-menu>li {
+body #branding>.wrap .header-nav.remove_root_bg .wrap ul.sf-menu>li.menu-item {
     border-left: none;
 }
 
-body #top #branding>.wrap .remove_root_bg ul.sf-menu>li>a {
+#branding>.wrap .remove_root_bg ul.sf-menu>li.menu-item>a {
     background: none;
 }
 
-body #top #branding>.wrap .remove_root_bg ul.sf-menu>li>a:hover {
+#branding>.wrap .remove_root_bg ul.sf-menu>li.menu-item>a:hover {
     background: none;
 }
 
 /* adjust for right and center */
-body #top #branding>.wrap .right ul.sf-menu {
+#branding>.wrap .right ul.sf-menu {
     float: right;
     clear: right;
 }
 
-body #top #branding>.wrap .center div>ul.sf-menu {
+#branding>.wrap .center div>ul.sf-menu {
     float: none;
     text-align: center;
     font-size: 0;
     /* correct spacing between inline-block items */
 }
 
-body #top #branding>.wrap .center ul.sf-menu>li {
+#branding>.wrap .center ul.sf-menu>li.menu-item {
     display: inline-block;
     float: none;
     text-align: left;
 }
 
-body #top #branding>.wrap .center ul.sf-menu>li>ul {
+#branding>.wrap .center ul.sf-menu>li.menu-item>ul {
     border: none
 }
 

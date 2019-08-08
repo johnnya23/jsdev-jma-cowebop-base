@@ -10,39 +10,10 @@ $dynamic_styles = array();
 // $dynamic_styles[] = array(max(or min)-$width@$selector, array($property, $value)[,array($property, $value)...])
 
 
-$base_menus = ' body #branding > .wrap ';//d.wrap only applies to main menu
-$ul = '.header-nav .wrap ul.sf-menu ';//remove .header-nav
+$base_menus = ' #branding ';//d.wrap only applies to main menu
+$ul = '.header-nav ul.sf-menu ';//remove .header-nav
 $main_bg = '.header-nav';
 $body_shape = $jma_spec_options['body_shape'];
-if ($jma_spec_options['style_sticky']) {
-    $base_menus = ' body #branding > div ';//div is general enough to apply to both sticky and main menus
-    $ul = '.wrap ul.sf-menu ';
-    $main_bg = '.header-nav, #sticky-menu';
-    if ($jma_spec_options['style_sticky'] == 2) {
-        $main_bg = '.header-nav';
-        $dynamic_styles[10] =  array('#sticky-menu ' . $ul . ' > ' . 'li > a',
-            array('color', $jma_spec_options['typography_header_color'] . '!important')
-        );
-    }
-} else {
-    $dynamic_styles[10] =  array('#sticky-menu .wrap ul.sf-menu ' . 'li  a:hover',
-        array('opacity','0.6')
-    );
-}
-if ($jma_spec_options['style_sticky'] != 1) {
-    $dynamic_styles[20] =  array('#sticky-menu' ,
-        array('-webkit-box-shadow', '0px 2px 15px 0px rgba(0,0,0,0.4)'),
-        array('-moz-box-shadow', '0px 2px 15px 0px rgba(0,0,0,0.4)'),
-        array('box-shadow', '0px 2px 15px 0px rgba(0,0,0,0.4)'),
-    );
-    if (!$jma_spec_options['style_sticky']) {
-        $dynamic_styles[30] =  array('#sticky-menu ul .sf-mega, #sticky-menu ul .non-mega-sub-menu' ,
-            array('-webkit-box-shadow', '0px 2px 15px 0px rgba(0,0,0,0.4)'),
-            array('-moz-box-shadow', '0px 2px 15px 0px rgba(0,0,0,0.4)'),
-            array('box-shadow', '0px 2px 15px 0px rgba(0,0,0,0.4)'),
-        );
-    }
-}
 $dynamic_styles[40] =  array($main_bg ,
     array('background-color', $jma_spec_options['menu_background_color']),
     array('border-top', 'solid 1px ' . $jma_spec_options['menu_background_color']),
@@ -52,10 +23,10 @@ $dynamic_styles[50] =  array('#access.fix-menu' ,// add child sticky-menu
     array('background-color', get_trans($jma_spec_options['menu_background_color'], 0.9))
 );
     $dynamic_styles[60] =  array('#access.fix-menu.remove_root_bg' ,// add child sticky-menu when menu root bg off selected
-        array('background-color', get_trans($jma_spec_options['header_background_color'], 0.9) . '!important')
+        array('background-color', get_trans($jma_spec_options['header_background_color'], 0.9))
     );
     $dynamic_styles[65] =  array('#access.remove_root_bg' ,// add child sticky-menu when menu root bg off selected
-        array('background-color', $jma_spec_options['header_background_color'] . '!important')
+        array('background-color', $jma_spec_options['header_background_color'])
     );
 if ($jma_spec_options[ 'body_shape' ] == 'boxed' || $jma_spec_options[ 'body_shape' ] == 'dark_modular') {
     $dynamic_styles[70] =  array('min-' . ($jma_spec_options['site_width']+55) . '@#access.fix-menu' ,
@@ -82,7 +53,7 @@ $dynamic_styles[115] =  array($base_menus . '.remove_root_bg' . $ul . '>li> a ',
     array('color', $jma_spec_options['header_font_color'])
 );
 $dynamic_styles[120] =  array($base_menus . $ul . 'li.current_page_item > a, ' . $base_menus . $ul . 'li.current-menu-item > a, ' . $base_menus . $ul . 'li.current-menu-ancestor > a, ' . $base_menus . $ul . 'li.current-post-parent > a, ' . $base_menus . $ul . 'li.current-menu-parent > a, ' . $base_menus . $ul . 'li.current-menu-item > a:hover',
-    array('color', $jma_spec_options['menu_font_current'] . '!important'),
+    array('color', $jma_spec_options['menu_font_current']),
     array('background-color', $jma_spec_options['menu_background_current'])
 );
 $dynamic_styles[130] =  array($base_menus . $ul . 'li a:hover',

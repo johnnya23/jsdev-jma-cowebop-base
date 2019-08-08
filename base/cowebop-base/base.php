@@ -462,13 +462,19 @@ add_action('wp_head', 'jma_favicon', 800);
 add_action('admin_head', 'jma_favicon');
 
 
-//styling the backend with this css (hence hook "admin_head") remove comment 5 lines down to enable
+//styling the backend with this css (hence hook "admin_head") remove comment 5 lines down to enable    themeblvd-admin-utils
 function jma_backend_custom_css()
 {
-    echo '<link rel="stylesheet" href="'.plugin_dir_url(__FILE__).'css/back-side.css" type="text/css" />';
-    echo "\n"; // line break for neatness
+    wp_enqueue_style('jma_base_admin_css', plugin_dir_url(__FILE__).'css/back-side.css');
+    wp_add_inline_script('themeblvd-admin-utils', 'jQuery(document).ready(function($) {
+        $("textarea#_jma_widget_area").focus(function() {
+            $(this).animate({
+                height: "23em"
+            }, 500);
+        });
+    });');
 }
-add_action('admin_head', 'jma_backend_custom_css');
+add_action('admin_enqueue_scripts', 'jma_backend_custom_css');
 
 
 

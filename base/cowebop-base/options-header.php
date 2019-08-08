@@ -52,18 +52,6 @@ $options = array(
         'type' 		=> 'checkbox'
     ),
     array(
-        'name' 		=> 'Add Menu Styling to Sticy Menu',
-        'desc' 		=> 'Repeat setting for image above (if applicable)',
-        'id' 		=> 'style_sticky',
-        'std'		=> 0,
-        'type' 		=> 'radio',
-        'options'   => array(
-            0 => 'Leave All White',
-            1 => 'Match Reguler Menus',
-            2 => 'Match Reguler Menus and Leave Sticky Root White (we may want this if the menu bg conflicts with the logo)'
-            )
-    ),
-    array(
     'name'      => __('Child Theme Sticky Menu', 'themeblvd'),
     'desc'      => __('Use the child themes sticky menu (make sure parent sticky is off)', 'themeblvd'),
     'id'        => 'child_sticky_menu',
