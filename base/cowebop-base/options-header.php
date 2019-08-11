@@ -57,13 +57,6 @@ $options = array(
     'id'        => 'child_sticky_menu',
     'std'       => 1,
     'type'      => 'checkbox'
-    ),
-    array(
-    'name'      => __('Alternate Sticky Logo', 'themeblvd'),
-    'desc'      => __('Cange the log in the sticky menu', 'themeblvd'),
-    'id'        => 'alt_sticky_logo',
-    'std'       => '',
-    'type'      => 'upload'
     )
 );
 themeblvd_add_option_section('jma_styles_header', 'jma_header_options', $name, $description, $options, true);

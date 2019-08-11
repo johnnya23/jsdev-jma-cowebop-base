@@ -61,9 +61,6 @@ if (!function_exists('jma_implement_special_options')) {
             $title_hook = $jma_spec_options['body_shape'] == 'stretch'? 'themeblvd_header_after':'themeblvd_main_top';
             add_action($title_hook, 'jma_add_title', 20);
         }
-        if ($jma_spec_options['alt_sticky_logo']) {//add different log for header
-            add_filter('themeblvd_sticky_logo_uri', 'alt_sticky_logo');
-        }
 
         //function in header-images.php displays header images (hooked in loop below)
         if (jma_images_on()) {
@@ -85,16 +82,6 @@ function jma_header_widget()
         $widget_html = '<div class="jma-header-overlay post-id-' . $post->ID . '"><div>' . $header_values['widget_area'] . '</div></div>';
     }
     echo $widget_html;
-}
-
-/**
- * @function alt_sticky_logo allows a custom logo if paret theme sticky menu is in use
- *
- */
-function alt_sticky_logo($x)
-{
-    $jma_spec_options = jma_get_theme_values();
-    return $jma_spec_options['alt_sticky_logo'];
 }
 
 function jma_add_classes($classes)
