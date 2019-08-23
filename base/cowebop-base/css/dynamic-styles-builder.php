@@ -142,6 +142,13 @@ if ($body_shape == 'dark_modular' || $body_shape == 'boxed') {
         array('max-width', $jma_spec_options['site_width'].'px')
     );
 }
+if ($jma_spec_options['border_shadow'] == 'on') {
+    $dynamic_styles[280] = array('#access.fix-menu',
+        array('-moz-box-shadow', '0 2px 10px ' . $adjusted_icon_color),
+        array('-webkit-box-shadow', '0 2px 10px ' . $adjusted_icon_color),
+        array('box-shadow', '0 2px 10px ' . $adjusted_icon_color)
+    );
+}
 
 
 // end menu display

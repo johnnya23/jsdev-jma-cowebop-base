@@ -404,9 +404,6 @@ body #branding>div ul.sf-menu .sf-mega ul {
 #access.fix-menu {
     max-width: 100%;
     position: fixed;
-    -moz-box-shadow: 0 0 10px #cccccc;
-    -webkit-box-shadow: 0 0 10px #cccccc;
-    box-shadow: 0 0 10px #cccccc;
     z-index: 10;
 }
 

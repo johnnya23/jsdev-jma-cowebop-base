@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
                     menu_padding = $menu.data('menupadding');
                     $fixed = $('.fix-menu');
                     $fixed.css({
-                        'top': admin_bar_height
+                        'top': admin_bar_height,
                     });
                     $fixed.find('ul').children('li').find('a').css({
                         'padding-top': menu_padding,
@@ -75,6 +75,11 @@ jQuery(document).ready(function($) {
         var header_width = $('#branding').width();
         $('.logo.header-nav').each(function() {
             $this = $(this);
+            fixed_width = $body.hasClass('boxed') ? $this.parent().width() : "''";
+            console.log('width' + fixed_width);
+            $this.css({
+                'width': fixed_width
+            });
             logo_width = $this.find('.site-logo').outerWidth();
             menu_width = $this.find('ul.sf-menu').outerWidth();
             if ((logo_width + menu_width + 6) > header_width) {
@@ -91,6 +96,7 @@ jQuery(document).ready(function($) {
         }
         header_adjust();
     });
+
     $window.scroll(function() {
         //do this one immediately
         if ($('#access').data('usechildsticky')) {
