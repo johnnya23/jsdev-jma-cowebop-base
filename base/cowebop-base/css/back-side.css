@@ -11,3 +11,7 @@ body .tb-options-wrap .section {
 #_jma_widget_area {
     height: 2em;
 }
+
+.block-editor__container .wp-block {
+    max-width: 1510px;
+}

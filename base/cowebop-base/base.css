@@ -54,8 +54,9 @@ body .site-copyright .copyright {
     text-decoration: none;
 }
 
-.sf-menu-with-fontawesome .sf-sub-indicator {
-    width: .625em;
+/* suppresses the little squares while font-awesome loads */
+.menu-btn i {
+    display: none;
 }
 
 body {
@@ -68,6 +69,10 @@ body.search {
 
 .mobile-nav {
     display: none
+}
+
+.boxed .jma-header-item .wrap>div>div {
+    padding-left: 3px;
 }
 
 /*.header-nav ul,*/

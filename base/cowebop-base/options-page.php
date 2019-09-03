@@ -63,7 +63,7 @@ $options = array(
     'name'      => __('Site Width', 'themeblvd'),
     'desc'      => __('The over-all width of the site content', 'themeblvd'),
     'id'        => 'site_width',
-    'std'       => 1100,
+    'std'       => 1200,
     'type'      => 'text'
     ),
     array(

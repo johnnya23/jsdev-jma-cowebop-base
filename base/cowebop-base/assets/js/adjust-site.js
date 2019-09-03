@@ -59,7 +59,7 @@ jQuery(document).ready(function($) {
                     }
                 }
                 $fixed.find('.site-logo').find('img').css({
-                    'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').height() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
+                    'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').outerHeight() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
                 });
             } else {
                 $('.fix-menu').remove();
@@ -76,7 +76,6 @@ jQuery(document).ready(function($) {
         $('.logo.header-nav').each(function() {
             $this = $(this);
             fixed_width = $body.hasClass('boxed') ? $this.parent().width() : "''";
-            console.log('width' + fixed_width);
             $this.css({
                 'width': fixed_width
             });

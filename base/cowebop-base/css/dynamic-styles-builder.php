@@ -144,9 +144,9 @@ if ($body_shape == 'dark_modular' || $body_shape == 'boxed') {
 }
 if ($jma_spec_options['border_shadow'] == 'on') {
     $dynamic_styles[280] = array('#access.fix-menu',
-        array('-moz-box-shadow', '0 2px 10px ' . $adjusted_icon_color),
-        array('-webkit-box-shadow', '0 2px 10px ' . $adjusted_icon_color),
-        array('box-shadow', '0 2px 10px ' . $adjusted_icon_color)
+        array('-moz-box-shadow', '0 2px 10px ' . $jma_spec_options['menu_background_color']),
+        array('-webkit-box-shadow', '0 2px 10px ' . $jma_spec_options['menu_background_color']),
+        array('box-shadow', '0 2px 10px ' . $jma_spec_options['menu_background_color'])
     );
 }
 
