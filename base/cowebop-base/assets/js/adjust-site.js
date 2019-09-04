@@ -59,7 +59,7 @@ jQuery(document).ready(function($) {
                     }
                 }
                 $fixed.find('.site-logo').find('img').css({
-                    'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').outerHeight() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
+                    'height': (widget_height + $menu.find('ul.sf-menu').find('li.level-1').find('a').height() + $menu.data('menupadding') * 2 - logo_padding) + 'px'
                 });
             } else {
                 $('.fix-menu').remove();
