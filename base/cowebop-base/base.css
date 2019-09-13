@@ -409,7 +409,7 @@ body #branding>div ul.sf-menu .sf-mega ul {
 #access.fix-menu {
     max-width: 100%;
     position: fixed;
-    z-index: 10;
+    opacity: 0;
 }
 
 #access.header-nav {
