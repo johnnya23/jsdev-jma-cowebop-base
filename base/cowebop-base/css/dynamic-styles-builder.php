@@ -185,6 +185,10 @@ $dynamic_styles[1000] = array('.btn, .btn-primary, body .metaslider .theme-defau
     array('background-color',  $jma_spec_options['button_back']),
     array('border-color', $jma_spec_options['button_font']),
     array('border','solid!important'),
+    array('border-width', $jma_spec_options['button_border_width'] . 'px!important'),
+    array('border-radius', $jma_spec_options['button_border_radius'] . 'px'),
+    array('font-size', $jma_spec_options['button_font_size'] . 'px'),
+    array('padding', $jma_spec_options['button_vert_padding'] . 'px ' .  $jma_spec_options['button_hor_padding'] . 'px')
 );
 /* for icons and borders throughout the site we use the darker of the footer values */
 $adjusted_icon_color = first_is_lighter($jma_spec_options['footer_background_color'], $jma_spec_options['footer_font_color'])? $jma_spec_options['footer_font_color']: $jma_spec_options['footer_background_color'];
@@ -297,7 +301,7 @@ if (($body_shape == 'stretch' || $body_shape == 'stretch_bordered') && $jma_spec
     );
     $builder_sel = $body_shape == 'stretch'? '.element-section > .element, ': '.jma-custom-wrap, ';
 
-    $dynamic_styles[3110] = array($builder_sel .'.widgets-above-header>.wrap, #access > div, #access2 > div, .tb-sticky-menu > .wrap, .header-top > .wrap, .header-above > .wrap, .header-content,.header-content.image .wrap>div>div, #main, .site-footer > .wrap > div > .wrap, .widgets-below-footer>.wrap',
+    $dynamic_styles[3110] = array($builder_sel .'.widgets-above-header>.wrap, .tb-sticky-menu > .wrap, .header-top > .wrap, .header-above > .wrap, .header-content > .wrap,.header-content.image .wrap>div>div, #main, .site-footer > .wrap > div > .wrap, .widgets-below-footer>.wrap',
         array('margin-left', 'auto'),
         array('margin-right', 'auto'),
         array('max-width', ($jma_spec_options['site_width'] + 40).'px'),
@@ -305,11 +309,15 @@ if (($body_shape == 'stretch' || $body_shape == 'stretch_bordered') && $jma_spec
         array('padding-right', '20px')
     );
 
+    $dynamic_styles[3120] = array($builder_sel .'.header-nav>.wrap',
+        array('max-width', $jma_spec_options['site_width'].'px')
+    );
+
     if ($body_shape == 'stretch') {
-        $dynamic_styles[3120] = array('.element-section>.element.popout.first',
+        $dynamic_styles[3130] = array('.element-section>.element.popout.first',
             array('margin-top', '-' . $jma_spec_options['builder_section_vert'] . 'px'),
         );
-        $dynamic_styles[3130] = array('.element-section>.element.popout.last',
+        $dynamic_styles[3140] = array('.element-section>.element.popout.last',
             array('margin-bottom', '-' . $jma_spec_options['builder_section_vert'] . 'px'),
         );
     }
@@ -611,7 +619,7 @@ $dynamic_styles[9010] = array('.entry-title a, h1 a, h2 a, h3 a, a, .breadcrumb>
 $dynamic_styles[9020] = array('.entry-title a:hover, h1 a:hover, h2 a:hover, h3 a:hover, a:hover',
     array('color', $jma_spec_options['hover_font_color'])
 );
-$dynamic_styles[9030] = array('#branding',
+$dynamic_styles[9030] = array('.header-content',
     array('background', $jma_spec_options['header_background_color']),
     array('color', $jma_spec_options['header_font_color'])
 );
@@ -672,6 +680,6 @@ $dynamic_styles[9180] = array('.tooltip-inner',
     array('color', $adjusted_icon_color . '!important')
 );
 $jma_css_values = '';
-$dynamic_styles = apply_filters('dynamic_styles_filter', $dynamic_styles);
+$dynamic_styles = apply_filters('dynamic_styles_filter', $dynamic_styles, $jma_spec_options, $adjusted_icon_color);
 $jma_css_values =  generic_output($dynamic_styles);
 /* create html output from  $jma_css_values */

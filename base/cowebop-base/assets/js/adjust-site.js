@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
     //(it will be covered) by header elements
     if ($body.hasClass('stretched')) {
         $fixed.css({
-            'opacity': 1
+            'display': 'block'
         });
     }
 
@@ -50,9 +50,9 @@ jQuery(document).ready(function($) {
 
             if (offset > menu_top_pos &&
                 (($(window).height() + menu_height + menu_top_pos + 25) < $('body').height() + main_pos)) {
-                $fixed.css('opacity', 1);
+                $fixed.css('display', 'block');
             } else {
-                $fixed.css('opacity', '');
+                $fixed.css('display', '');
             }
         }
     }

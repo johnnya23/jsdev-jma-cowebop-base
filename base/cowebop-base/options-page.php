@@ -346,7 +346,42 @@ $button_options = array(
     'id'        => 'button_font_hover',
     'std'       => '#000000',
     'type'      => 'color'
-    )
+    ),
+    array(
+    'name'      => __('Button Border Width', 'themeblvd'),
+    'desc'      => __('in px (integer only)', 'themeblvd'),
+    'id'        => 'button_border_width',
+    'std'       => 3,
+    'type'      => 'text'
+    ),
+    array(
+    'name'      => __('Button Border Radius', 'themeblvd'),
+    'desc'      => __('in px (integer only)', 'themeblvd'),
+    'id'        => 'button_border_radius',
+    'std'       => 0,
+    'type'      => 'text'
+    ),
+    array(
+    'name'      => __('Button Font Size', 'themeblvd'),
+    'desc'      => __('in px (integer only)', 'themeblvd'),
+    'id'        => 'button_font_size',
+    'std'       => 11,
+    'type'      => 'text'
+    ),
+    array(
+    'name'      => __('Button Horizontal Padding', 'themeblvd'),
+    'desc'      => __('in px (integer only)', 'themeblvd'),
+    'id'        => 'button_hor_padding',
+    'std'       => 20,
+    'type'      => 'text'
+    ),
+    array(
+    'name'      => __('Button Vertical Padding', 'themeblvd'),
+    'desc'      => __('in px (integer only)', 'themeblvd'),
+    'id'        => 'button_vert_padding',
+    'std'       => 12,
+    'type'      => 'text'
+    ),
 );
 themeblvd_add_option_section('jma_styles_page', 'jma_button', __('Button Options', 'themeblvd'), __('On hover the bottom gradient color will fill the entire button (font color will change if desired)', 'themeblvd'), $button_options, false);
 

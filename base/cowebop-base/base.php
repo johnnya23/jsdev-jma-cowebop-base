@@ -424,7 +424,7 @@ function generate_style_css()
         }
     }
 
-    $css_dir =  plugin_dir_path(__FILE__). 'css/' ;
+    $css_dir =  JMA_COWEBOP_BASE_DIRECTORY . 'css/' ;
 
     require($css_dir . 'dynamic-styles-builder.php'); // Generate CSS
 

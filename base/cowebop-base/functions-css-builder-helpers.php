@@ -71,7 +71,7 @@ if (!function_exists('generic_output')) {
 // so we explode around @, then around - (first checking to see if @ symbol is present)
 function build_css($css_values)
 {
-    $return = ' /* THIS FILE IS GENERATED DYMANICALLY BY JMA COWEBOP BASE BO NOT EDIT OR DELETE!! ' . date("F j, Y, g:i:s a") .'*/';
+    $return = ' /* THIS CONTENT IS GENERATED DYMANICALLY BY JMA COWEBOP BASE BO NOT EDIT OR DELETE!! ' . date("F j, Y, g:i:s a") .'*/';
     foreach ($css_values as  $k => $css_value) {
         $has_media_query = (strpos($k, '@'));
         if ($has_media_query) {

@@ -246,7 +246,7 @@ article.page, .fixed-sidebar .widget, .element-section>.element.bg-content, .ele
     max-width: 100%;
 }
 
-.header-above>.wrap, .header-content, .header-content.image .wrap>div>div {
+.header-above>.wrap, .jma-header-content .wrap {
     padding: 0 20px;
 }
 
@@ -409,7 +409,7 @@ body #branding>div ul.sf-menu .sf-mega ul {
 #access.fix-menu {
     max-width: 100%;
     position: fixed;
-    opacity: 0;
+    display: none;
 }
 
 #access.header-nav {
@@ -498,25 +498,25 @@ body #branding>.wrap .header-nav.remove_root_bg .wrap ul.sf-menu>li.menu-item {
 }
 
 /* adjust for right and center */
-#branding>.wrap .right ul.sf-menu {
+#branding>.wrap .jma-right ul.sf-menu {
     float: right;
     clear: right;
 }
 
-#branding>.wrap .center div>ul.sf-menu {
+#branding>.wrap .jma-center div>ul.sf-menu {
     float: none;
     text-align: center;
     font-size: 0;
     /* correct spacing between inline-block items */
 }
 
-#branding>.wrap .center ul.sf-menu>li.menu-item {
+#branding>.wrap .jma-center ul.sf-menu>li.menu-item {
     display: inline-block;
     float: none;
     text-align: left;
 }
 
-#branding>.wrap .center ul.sf-menu>li.menu-item>ul {
+#branding>.wrap .jma-center ul.sf-menu>li.menu-item>ul {
     border: none
 }
 
