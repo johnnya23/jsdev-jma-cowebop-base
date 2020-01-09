@@ -541,6 +541,10 @@ body #branding>.wrap .header-nav.remove_root_bg .wrap ul.sf-menu>li.menu-item {
     .jma-stack-991 .logo#access {
         display: block !important
     }
+
+    .jma-stack-991 .fix-menu .logo#access {
+        display: none !important
+    }
 }
 
 @media(max-width:767px) {
@@ -550,6 +554,10 @@ body #branding>.wrap .header-nav.remove_root_bg .wrap ul.sf-menu>li.menu-item {
 
     .jma-stack-767 .logo#access {
         display: block !important
+    }
+
+    .jma-stack-767 .fix-menu .logo#access {
+        display: none !important
     }
 }
 
